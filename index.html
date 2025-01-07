@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>unizik app</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="waiting-section">
+       <div>
+        <img src="img/logoSite.png" style="width: 100%;" alt="">
+       </div>
+    </div>
+
+     <!-- sign in page -->
+     <div class="sign-in ">
+
+      <header>
+        <img src="img/logoSite.png" style="width: 100%;" alt="">
+      </header>
+
+      <div class="popup">
+       
+      </div>
+     
+    <div class="wrapper">
+        <div class="form-box login">
+            <h2>Register</h2>
+              <div class="form">
+
+                <div class="input-box name">
+                    <div>
+                        <img src="img/profile.png" width="100%" alt="">
+                    </div>
+                    <input type="text" autocomplete="username" id="name" required>
+                    <label for="name">Full Name</label>
+                </div>
+
+                <div class="input-box password">
+                    <div>
+                        <img src="img/eyeclose.png" width="100%" alt="">
+                    </div>
+                    <input type="password" id="pass" required>
+                    <label for="pass">passward</label>
+                </div>
+
+
+                <div class="input-box department">
+                    <div>
+                        <img src="img/home-page.png" width="100%" alt="">
+                    </div>
+                    <input type="text" id="dep" required>
+                    <label for="dep">Department</label>
+                </div>
+
+                <div class="input-box reg-no">
+                
+                    <input type="number" id="reg" required>
+                    <label for="reg">Reg No:</label>
+                </div>
+
+             <div class="other-text">
+               <div class="remember-forget">
+                <label for=""><input  type="checkbox"><a href="">Remember me</a></label>
+                <a href="#" id="forgot">Forgot passward</a>
+               </div>
+               <div class="register">
+                <p>dont have an account <a href="#">Register</a>
+                </p>
+               </div>
+               </div>
+
+               <button class='submit'>submit</button>
+               <button class='submit one'>login</button>
+               <button class='submit two'>continue</button>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+    <div class="body ">
+
+<!-- nav -->
+    <nav>
+        <div class="logo-img">
+        <img src="img/logoSite.png" style="width: 100%;" alt="">
+            
+        </div>
+
+        <div class="notification" onclick="notifi()">
+            <div class="notifi-ball"></div>
+            <img src="img/notification.png" width="100%" alt="">
+        </div>
+    </nav>
+
+<!-- main body -->
+     <div class="body-inner ">  
+
+    <div class="notification-text ">
+
+        <h1>No notification yet</h1>
+    </div>
+
+    <!-- home page -->
+<section class="home-page active">
+
+        <div class="home-img">
+            <div class="img">
+            <img src="img/profileImg.jpg" style="width: 100%" alt="">
+
+            </div>
+            <div class="text">
+                <h4>Ekene basil victor</h4>
+                <h5>Electronic and computer Engineering</h5>
+                <p>2022364060</p>
+            </div>
+        </div>
+        
+    <section class="selection">
+        <div class="course list" onclick="gradee()">
+            <img src="img/grade.png" alt="">
+            <p>list of courses</p>
+        </div>
+        <div class="course list" onclick="about()">
+            <p>About this App</p>
+        </div>
+        <div class="course list">
+            <img src="img/grade.png" alt="">
+            <p>News</p>
+        </div>
+        <div class="course">
+            <img src="img/grade.png" alt="">
+            <p>New upDate</p>
+        </div>
+</section>
+
+    <section class="performance">
+
+        <h2>Performance
+        </h2>
+        <div class="content">
+        
+            
+            <div class="textR">
+                <h4 class="upn">50%</h4>
+                <h4 class="downn">50%</h4>
+            </div>
+            <div class="range">
+                <div class="up"></div>
+                <div class="down"></div>
+            </div>
+        </div>
+    </section>
+
+    </section>
+
+<section class="about-app ">
+
+    <h2>This APP</h2>
+
+    <p>     This app was created to help/assist you organise and analyse your courses, both in listing of courses with their grade according to sections, 
+        calculation of GP and checking of performance. </p>
+    <p>We also have other variety of upDate that has not yet been put in place and we would like you to try them out soon thank you for Unterstanding .</p>
+
+    <h2>Usage</h2>
+    <p>when inputing your grades, All should be in capital letter's so that the performance and gp will be able to operate well</p>
+
+</section>
+
+
+    <!-- profile page -->
+<section class="profile ">
+    <div class="pro-img">
+        <div class="edit">
+       <input type="file" class="file"  accept="image/jpg, image/jpeg, image/png" hidden>
+            
+        </div>
+    </div>
+
+    <div class="pro-text">
+       <h2 id="one">full name</h2>
+       <hr>
+       <h2 id="two">Department</h2>
+       <hr>
+       <h2 id="three">reg No:</h2>
+       <hr>
+       <div class="sign-out">
+       <h2>Email</h2>
+       <img src="img/email.png" alt="">
+       </div>
+
+       <hr>
+       <div class="sign-out out">
+        <a href="#"><h2>sign out</h2></a>
+        <img src="img/exit.png" alt="">
+
+        
+       </div>
+    </div >
+    <h3>your GP is <span></span></h3>
+</section>
+
+<!-- grades -->
+<section class="grade  ">
+    <div class="warrning">
+        <div class="cros">
+            <div class="cross1 crosss"></div>
+            <div class="cross2 crosss"></div>
+        </div>
+        <div class="img-warn">
+            <img style="width: 100%;" src="img/werrningIcon.jpg" alt="">
+        </div>
+        <h2>Are you sure you want to delet "<b></b>"</h2>
+        <button>continue</button>
+    </div>
+
+    <div class="inner-grade">
+       
+ 
+    <div class="table">
+        <table>
+            <thead>
+                <tr>
+                    <td>100-70</td>
+                    <td>69-60</td>
+                    <td>59-50</td>
+                    <td>49-45</td>
+                    <td>44-40</td>
+                    <td>39-0</td>
+                </tr>
+               
+            </thead>
+            <tbody>
+                <tr>
+                    <td>A</td>
+                    <td>B</td>
+                    <td>C</td>
+                    <td>D</td>
+                    <td>E</td>
+                    <td>F</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</section>
+
+<!-- editing -->
+ <section class="editing ">
+    <div class="popupe">
+       
+    </div>
+    <div class="head">
+        <h2>Enter your grade</h2>
+        <select name="" id="options">
+            <option value="section">section</option>
+            <option value="edit">new section</option>
+        </select>    
+    </div>
+
+
+    <div class="editee">
+        <input type="text" class="" placeholder="Season">
+        <div class="cross">
+            <div class="cross1 crosss"></div>
+            <div class="cross2 crosss"></div>
+        </div>
+    </div>
+
+
+    <div class="edit">
+        <div class="edit-box">
+        <div class="input one">
+           <input type="text" placeholder="course" class="course-input">
+           <input type="number" placeholder="credit" class="credit-input">
+           <input type="char" placeholder="grade" class="grade-input">
+        </div>
+        </div>
+        
+        <div class="era-del">
+            <button class="trash"><img src="img/trash.png" alt=""></button>
+            <button class="add">+</button>
+        </div>
+    </div>
+
+    
+    <button class="edit-btn">Edit</button>
+ </section>
+
+ </div>
+
+     <!-- footer -->
+<footer>
+        <div class="edite" onclick="edit()">
+            <img class="pick edit"  src="img/edit.png" alt="">
+        </div>
+
+       <div class="img1" onclick="home()">
+        <img class="pick homeP" src="img/home-page.png" alt="">
+       </div>
+
+       <div class="pro" onclick="profilee()">
+        <img class="pick" src="img/profile.png" alt="">
+
+       </div>
+ </footer>
+
+ </div>
+
+    <script>
+const homePage = document.querySelector('.home-page');
+const editing = document.querySelector('.editing');
+const profile = document.querySelector('.profile');
+const grade = document.querySelector('.grade')
+const notifiBall = document.querySelector('.notifi-ball')
+const aboutApp = document.querySelector('.about-app')
+const notify = document.querySelector('.notification-text')
+const notifyH1 = document.querySelector('.notification-text h1')
+
+
+        function edit(){
+
+          homePage.classList.remove('active');
+          editing.classList.add('active');
+          grade.classList.remove('active');
+          profile.classList.remove('active');
+          notify.classList.remove('active')
+          aboutApp.classList.remove('active')
+        };
+
+        function profilee(){
+          aboutApp.classList.remove('active')
+          homePage.classList.remove('active');
+          editing.classList.remove('active');
+          grade.classList.remove('active');
+          profile.classList.add('active');
+          notify.classList.remove('active')
+
+        };
+
+        function gradee(e){
+          notify.classList.remove('active')
+          aboutApp.classList.remove('active')
+          homePage.classList.remove('active');
+          editing.classList.remove('active');
+          grade.classList.add('active');
+          profile.classList.remove('active');
+        };
+
+        function home(){
+          homePage.classList.add('active');
+          aboutApp.classList.remove('active')
+          editing.classList.remove('active');
+          grade.classList.remove('active');
+          notify.classList.remove('active')
+          profile.classList.remove('active');
+        };
+
+        window.addEventListener('DOMContentLoaded', () => {
+            setInterval(() => {
+            if(navigator.onLine){
+            notifiBall.classList.add('activea')
+            notifyH1.innerHTML = 'No notification yet';
+          }else{
+            notifyH1.innerHTML = 'No internet connection';
+          }
+          }, 500);
+        })
+
+        function notifi(){
+            homePage.classList.remove('active');
+          editing.classList.remove('active');
+          aboutApp.classList.remove('active')
+          grade.classList.remove('active');
+          notify.classList.add('active')
+          profile.classList.remove('active');
+     
+        }
+
+        function about(){
+            homePage.classList.remove('active');
+          editing.classList.remove('active');
+          aboutApp.classList.add('active')
+          grade.classList.remove('active');
+          notify.classList.remove('active')
+          profile.classList.remove('active');
+        }
+    </script>
+
+    <script src="app.js"> </script>
+</body>
+</html>

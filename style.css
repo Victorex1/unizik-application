@@ -1,0 +1,951 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --gree : rgb(4, 187, 4);
+    --bla : black;
+    --whi : white;
+}
+
+
+.waiting-section{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    background-color: rgb(4, 208, 4);
+    opacity: 1;
+    transition: all 2s ease;
+    position: absolute;
+}
+
+.waiting-section.clear{
+    opacity: 0;
+    pointer-events: none;
+}
+
+.waiting-section div{
+    width: 250px;
+    animation: zoom 2s ease infinite;
+}
+
+
+.waiting-section div.cleare{
+    animation-play-state: paused;
+    transform: scale(0);
+    
+}
+
+
+@keyframes zoom {
+    0%{
+        width: 250px;
+    }
+    50%{
+        width: 180px;
+    }
+    100%{
+        width: 250px;
+    }
+}
+
+/* sign in page */
+.popup{
+    width: 200px;
+    height:50px;
+    margin-left: 150px;
+    top: 0px;
+    z-index: 10;
+
+}
+.popupe{
+    width: 200px;
+    height:50px;
+    margin-left: 150px;
+    top: 0px;
+    position: absolute;
+    z-index: 10;
+    pointer-events: none;
+
+}
+.popupin{
+    width: 200px;
+    height:50px;
+    padding: 10px;
+    background-color: rgb(0, 185, 0);
+    color: white;
+    font-size: 18px;
+    position: relative;
+    transform: translateX(100%);
+    animation:moveleft 0.5s ease forwards;
+    
+}
+
+@keyframes moveleft {
+    0%{
+    transform: translateX(100%);
+
+    }
+    100%{
+    transform: translateX(0);
+
+    }
+}
+
+.popupin:after{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    background-color: green;
+    transform-origin: right;
+    top: 45px;
+    right: 0;
+    animation: show 3s linear;
+
+
+}
+
+@keyframes show {
+    0%{
+        width: 100%;
+    }
+    100%{
+        width: 0;
+    }
+}
+
+.other-text{
+    display: none;
+}
+
+.submit{
+    width: 100%;
+    height: 40px;
+    border: none;
+    outline: none;
+    background-color: var(--gree);
+    color: var(--whi);
+    font-size: 17px;
+    border-radius: 6px;
+    margin: 14px 0;
+    
+}
+
+.submit.one{
+    display: none;
+}
+
+.submit.two{
+    display: none;
+}
+
+.submit:active{
+    transform: scale(0.96);
+}
+.sign-in{
+    width: 100%;
+    height: 100vh;
+    background: url(img/back\ app.jpg);
+    display: none;
+    transition: all 1s ease;
+
+}
+ .sign-in header{
+    width: 75px;
+    position: absolute;   
+    top: 0px;
+    left: 125px;
+    margin:5px 20px;
+    display: flex;
+    align-items: center;  
+    justify-content: space-between;
+}
+
+.sign-in .wrapper{
+    position: relative;
+    width: 320px;
+    height: 520px;
+    background: transparent;
+    border: 2px solid white;
+    border-radius: 7px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter:blur(20px);
+    margin: 35px auto;
+
+}
+
+.wrapper .form-box{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.form-box .form{
+    width: 85%;
+}
+
+.form-box .input-box{
+    position: relative;
+
+    width: 100%;
+    height: 80px;
+    border-bottom: 2px solid;
+    margin: 20px 0;
+}
+.input-box label{
+    position: absolute;
+    left: 5px;
+    top: 70%;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    font-weight: 500;
+    pointer-events: none;
+    transition: top 0.3s ease;
+}
+
+.input-box input{
+    position: relative;
+    top: 30px;
+    width: 100%;
+    height: 70%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    font-weight: 600;
+
+}
+
+.input-box input:focus~label,
+.input-box input:valid~label{
+    top: 30%;
+}
+
+.input-box div{
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 30px;
+    left: 80%;
+    z-index:1;
+}
+
+
+.remember-forget{
+    display: flex;
+    justify-content: space-between;
+}
+
+.remember-forget a{
+    text-decoration: none;
+    color: black;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+  .register{
+    display: flex;
+    justify-content: center;
+    margin-top: 7px;
+}
+.register a{
+    text-decoration: none;
+}
+
+
+
+/* body */
+.body{
+    display: none;
+}
+
+.body-inner{
+    display: none;
+    transition: display 0.6s ease;
+
+}
+body{
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    transition: display 0.6s ease;
+}
+nav{
+  padding: 10px;
+  background-color: var(--gree);
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+nav .logo-img{
+    width: 40px;
+}
+
+.notification .notifi-ball{
+    width: 10px;
+    display: none;
+    height: 10px;
+    background-color: red;
+    border-radius: 5px;
+    position: absolute;
+    top: 2%;
+    right: 4%;
+}
+
+.notification .notifi-ball.activea{
+    display: block;
+}
+.notification-text{
+    display: none;
+    
+    font-size: 17px;
+    color: gray;
+    height: 90vh;
+    transition: display 2s ease;
+}
+.notification-text h1{
+
+     position: absolute;
+     top: 50%;
+     left: 20%;
+     text-wrap: wrap;
+     width: 250px;
+}
+
+.about-app{
+    display: none;
+    padding: 20px;
+    overflow-y: auto;
+    height: 550px;
+}
+
+.about-app h2{
+    font-size: 30px;
+    margin: 10px 0;
+}
+
+.about-app p,.about-app p:nth-child(2){
+    font-size: 20px;
+    line-height: 29px;
+}
+
+.home-page.active,.body.active,
+.body-inner.active,.sign-in.active,
+.about-app.active,.editing.active,
+.editee input.active,.notification-text.active,
+.profile.active,.grade.active,
+.submit.one.active,.submit.two.active{
+    display: block;
+
+    transition: all 0.8s ease;
+}
+
+nav{
+    display: flex;
+    justify-content: space-between;
+}
+.notification{
+    width: 36px;
+}
+/* home page */
+.home-page{
+    display: none;
+    transition: all 0.5s ease;
+
+    
+}
+
+.home-img .text{
+    line-height: 30px;
+}
+
+.home-img .text h4{
+  font-size: 21px;
+}
+
+.home-img .text h5{
+  font-size: 17px;
+    
+}
+
+.home-img .img{
+    width: 85px;
+    overflow: hidden;
+    height: 85px;
+    background-color: gray;
+    border-radius: 50px;
+    border: 2px solid white;
+    
+}
+.home-img{
+    width: 90%;
+    max-width: 400px;
+    height: 150px;
+    border-radius: 7px;
+    background: url(img/back\ app.jpg) ;
+    background-position: center;
+    opacity: 0.9;
+    background-size: cover;
+    margin: 10px auto;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.pro-img .img{
+    height: 70px;
+    width: 70px;
+    border:2px solid ;
+    border-radius: 50px;
+    background-color: gray;
+}
+.pro-img .text{
+    margin-left: 20px;
+    line-height: 26px;
+    color: var(--bla);
+}
+
+
+.selection{
+    width: 90%;
+    max-width: 400px;
+    border: 3px solid var(--gree);
+    height: 230px;
+    padding: 8px ;
+    margin: 15px auto;
+    border-radius: 8px;
+    display: grid;
+    grid-template-columns: repeat(3,80px);
+    gap: 10px;
+
+}
+
+.selection .course{
+   width: 80px;
+   height: 100px;
+   background-color: rgba(2, 195, 2, 0.648);
+   border-radius: 7px;
+   padding: 12px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   line-height: 17px;
+   margin:0 10px;
+   text-align: center;
+}
+.selection .course p{
+  align-items: center;
+}
+.performance h2{
+    margin-left: 100px;
+    margin-top: 20px;
+}
+
+
+.selection .course img{
+    width: 40px;
+    margin: 7px 0;
+}
+.range{
+    width: 80%;
+    background-color: white;
+    height: 20px;
+    border: 4px solid black;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    margin: 0 auto;
+}
+
+
+.range .up{
+    height: 20px;
+    background-color: green;
+    width: 50%;
+    border-right: 2px solid black;
+
+}
+.textR{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 20px 0 5px 0;
+    color: white;
+    font-size: 20px;
+    color: var(--bla);
+}
+.range .down{
+    height: 20px;
+    background-color: red;
+    border-left: 2px solid black;
+    width: 50%;
+}
+
+/* footer section */
+
+.pick{
+    width: 40px;
+}
+
+footer{
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 55px;
+    background-color: var(--gree);
+    border-top-left-radius: 9px;
+    border-top-right-radius: 9px;
+}
+
+footer .img1{
+
+    margin-bottom: 50px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50px;
+    border: 5px solid var(--whi);
+    background-color: var(--gree);
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+}
+
+footer .edit{
+    width: 20px;
+}
+.pro .pick{
+    width: 22px;
+}
+
+footer .edite, footer .pro{
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    border: 2px solid;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+/* profile section */
+.profile{
+    width: 100%;
+    display: none;
+    transition: all 0.5 ease;
+}
+
+.profile h3{
+    position: absolute;
+    left: 35%;
+    font-size: 23px;
+}
+
+.pro-img .file{
+    background: url(img/edit.png);
+    background-position: center;
+    background-size: cover; 
+    
+}
+
+.pro-img{
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+    border: 4px solid;
+    background:url(img/profileImg.jpg);
+    margin: 20px auto;
+    position: relative;
+    background-color: gray;
+    background-position: center;
+    background-repeat: 1;
+    background-size: cover;
+}
+
+.pro-img .edit{
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    padding: 10px;
+    border: 2px solid;
+    border-radius: 50px;
+    bottom: 0;
+    right: 0;
+    background-color: white;
+    background: url(img/edit.png);
+    background-position: center;
+    background-size: cover; 
+   
+}
+
+.pro-text{
+    margin: 10px;
+    justify-content: center;
+    line-height: 47px;
+    background-color: rgb(181, 178, 178);
+    border-radius: 13px;
+    padding: 15px;
+    font-size: 12px;
+}
+
+.pro-text .sign-out{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.pro-text .sign-out img{
+    width: 50px;
+}
+.pro-text .sign-out a{
+
+    text-decoration: none;
+    color: black;
+}
+
+
+/* grading section */
+.grade{
+    padding: 10px;
+    width: 95%;
+    margin: 0 auto;
+    display: none;
+    transition: all 0.5e ease;
+}
+
+.grade1 .h2{
+    margin: 3px 0;
+    background-color: gray;
+    padding: 5px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.grade1 .h2 .grade-trash{
+    width: 27px;
+    padding: 0;
+}
+
+
+
+.h2 .grade-trash .img-trash{
+    pointer-events: none;
+    width: 100%;
+}
+.h2 .grade-trash .img-trash:active{
+    transform: scale(0.92);
+}
+
+
+.grade1{
+    display: block;
+    overflow: hidden;
+    height: 40px;
+    cursor: pointer;
+    transition: all 0.2s linear;
+}
+
+.grade1.height{
+    height: 500px;
+}
+
+
+
+
+.courses header{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px 0;
+    font-size: 14px;
+
+}
+.courses{
+    overflow-y: auto;
+    height: 100%;
+
+}
+
+.courses .result{
+    width: 90%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 10px 0;
+    font-size: 18px;
+    cursor: pointer;
+
+}
+
+.result-box .trash{
+    width: 27px;
+    height: 30px;
+    margin-left: 10px;
+
+}
+.result h4,.result p:nth-child(2),.result p:nth-child(3){
+    flex-grow: 1;
+}
+.result p:nth-child(2){
+    text-align: center;
+}
+.result p:nth-child(3){
+text-align:right;
+}
+
+
+.warrning {
+    width: 300px;
+    border-radius: 10px;
+    background-color: rgb(151, 150, 150);
+    padding: 19px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    position: absolute;
+    top: 200px; 
+    transform: scale(0);
+    transition: all 0.4s ease;
+    left: 7%;
+    
+}
+
+.warrning.war{
+    transform: scale(1);
+}
+.warrning .img-warn{
+    width: 100px;
+    height: 100px;
+    border-radius: 60px;
+    overflow: hidden;
+    border: 3px solid;
+}
+
+.warrning h2{
+    font-size: 20px;
+    margin: 10px 0;
+    text-align: center;
+}
+
+.warrning button{
+    width: 100%;
+    height: 40px;
+    outline: none;
+    border: none;
+    color: white;
+    background-color: rgb(1, 187, 1);
+    border-radius: 5px;
+    font-size: 20px;
+    margin: 10px 0;
+}
+
+.grade .inner-grade{
+    overflow: hidden;
+    height: 470px;
+
+}
+table{
+    bottom: 88px;
+    position: absolute;
+    left: 10%;
+    padding: 10px;
+    border-collapse: collapse;
+
+}
+table td{
+    padding: 5px 4px;
+    border: 1px solid ;
+    
+}
+
+
+/* editing section */
+.editing{
+    width: 95%;
+    display: none;
+    transition: all 0.5s ease;
+}
+
+.editing .head{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.head #options{
+    width: 130px;
+    height: 23px;
+    overflow: hidden;
+}
+
+.editee{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 300px;
+}
+.editee .cross,.warrning .cros{
+    transform: scale();
+    display: none;
+    pointer-events: none;
+}
+
+.editee .cross .crosss,.warrning .cros .crosss{
+    width: 25px;
+    height: 3px;
+    background-color: rgb(208, 205, 205);
+    margin: 10px 0;
+    position: absolute;
+    top: 37px;
+    left: 270px;
+}
+
+.warrning .cros .crosss{
+    width: 25px;
+    height: 3px;
+    background-color: rgb(208, 205, 205);
+    margin: 10px 0;
+    position: absolute;
+    top: 15px;
+    left: 260px;
+}
+.editee .cross.activea,.warrning .cros.activea{
+    transform: scale('');
+    display: block;
+    pointer-events: all;
+} 
+
+.editee .cross .cross1,.warrning .cros .cross1{
+    transform: rotate(45deg);
+}
+
+.editee .cross .cross2,.warrning .cros .cross2{
+    transform: rotate(-45deg);
+}
+
+.editee input{
+    display: block;
+    width: 62%;
+    height: 40px;
+    outline: none;
+    padding: 10px;
+    border-radius: 4px;
+    position: absolute;
+    top: 25px;
+    left:13%;
+    color: black;
+    border-radius: 4px;
+    pointer-events: all;
+    cursor: pointer;
+    transform: scale(0);
+    transition: all 0.3s ease;
+}
+
+.editee input.activea{
+    transform: scale(1);
+
+}
+
+
+.edit{
+    width: 90%;
+    margin: 0 auto;
+}
+
+.edit-btn{
+    position: absolute;
+    bottom: 95px;
+    width: 70%;
+    left: 15%;    margin: 0 auto;
+    height: 35px;
+    border-radius: 5px;
+    background-color: var(--gree);
+    color: var(--whi);
+    font-size: 15px;
+    border: none;
+    outline: none;
+
+}
+.edit-btn:active{
+    transform: scale(0.96);
+}
+
+.editing h2{
+    margin: 10px 20px;
+    font-size: 20px;
+}
+
+
+
+.edit .input{
+    display: flex;
+    margin: 10px auto;
+    width: 100%;
+
+}
+
+.edit .input input{
+    outline: none;
+    border: none;
+    background-color: rgb(214, 212, 212);
+    height: 40px;
+    margin: 0 3px;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 15px;
+}
+
+.edit .input .course-input{
+    width: 170px;
+}
+.edit .input .credit-input{
+    width: 70px;
+}
+.edit .input .grade-input{
+    width: 70px;
+}
+
+.era-del{
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: 10px;
+}
+
+.era-del button img{
+    width: 24px;
+    
+    height: 18px; 
+}
+.result .trash {
+  padding: 2px;
+  margin-left:9px;
+}
+.era-del button{
+    font-size: 24px;
+    width: 27px;
+    margin: 0 4px;
+}
+
