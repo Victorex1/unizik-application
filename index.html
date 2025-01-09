@@ -105,8 +105,15 @@
     </div>
 
     <!-- home page -->
+    <div class="show-inf">
+        <div class="show-inf-cross">
+            <div class="cross1 crosss"></div>
+            <div class="cross2 crosss"></div>
+        </div>
+        <h2>welcome</h2>
+        <p>This APP is built to help you analise your courses, to know more about the APP click the <b>About this App</b> button</p>
+    </div>
 <section class="home-page active">
-
         <div class="home-img">
             <div class="img">
             <img src="img/profileImg.jpg" style="width: 100%" alt="">
@@ -164,7 +171,8 @@
     <p>     This app was created to help/assist you organise and analyse your courses, both in listing of courses with their grade according to sections, 
         calculation of GP and checking of performance. </p>
     <p>We also have other variety of upDate that has not yet been put in place and we would like you to try them out soon thank you for Unterstanding .</p>
-
+    <br>
+    <hr>
     <h2>Usage</h2>
     <p>when inputing your grades, All should be in capital letter's so that the performance and gp will be able to operate well</p>
 
@@ -186,12 +194,6 @@
        <h2 id="two">Department</h2>
        <hr>
        <h2 id="three">reg No:</h2>
-       <hr>
-       <div class="sign-out">
-       <h2>Email</h2>
-       <img src="img/email.png" alt="">
-       </div>
-
        <hr>
        <div class="sign-out out">
         <a href="#"><h2>sign out</h2></a>
@@ -215,6 +217,9 @@
         </div>
         <h2>Are you sure you want to delet "<b></b>"</h2>
         <button>continue</button>
+    </div>
+    <div class="empty">
+        <h2>No grades yet</h2>
     </div>
 
     <div class="inner-grade">
@@ -360,14 +365,18 @@ const notifyH1 = document.querySelector('.notification-text h1')
         };
 
         window.addEventListener('DOMContentLoaded', () => {
+
             setInterval(() => {
             if(navigator.onLine){
-            notifiBall.classList.add('activea')
             notifyH1.innerHTML = 'No notification yet';
+          }else if(notify.children.length  > 1){
+            notifiBall.classList.add('activea')
+
           }else{
             notifyH1.innerHTML = 'No internet connection';
           }
           }, 500);
+
         })
 
         function notifi(){

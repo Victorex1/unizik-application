@@ -71,6 +71,12 @@ const passwordImg = document.querySelector('.password img');
 const warrning = document.querySelector('.warrning');
 const warrningB = document.querySelector('.warrning h2 b');
 const warrningBtn = document.querySelector('.warrning button');
+const footer = document.querySelector('footer');
+const  nav = document.querySelector('nav');
+const  gradeEmpty = document.querySelector('.grade .empty')
+
+const showInfBtn = document.querySelector('.show-inf-cross')
+const showInf = document.querySelector('.show-inf')
 
 // sign in page
 let recorded = 0;
@@ -401,16 +407,17 @@ function reload(){
     
      innerGrade.appendChild(div1);
 
-
-      if(innerGrade.children.length < 1){
-          let hs = document.createElement('h2')
-          hs.innerHTML = 'No grades yet'
-          innerGrade.appendChild(h2)
-      }else{
-      }
-
     })
 updateGrade()
+showInf.classList.add('activea')
+homePage.style.pointerEvents = 'none';
+nav.style.pointerEvents = 'none'
+footer.style.pointerEvents = 'none'
+
+if(innerGrade.children.length == 1){
+  gradeEmpty.style.display = 'flex';
+  innerGrade.style.display = 'none';
+}
 
   }
 
@@ -473,7 +480,8 @@ function nexte(next,each){
   btn.innerHTML = '|||';
 
   let div5 = document.createElement('div')
-  div5.style.display = 'flex';
+  div5.classList.add('next')
+  
   div5.appendChild(div)
   div5.appendChild(btn)
 next.appendChild(div5)
@@ -605,9 +613,10 @@ editBtn.addEventListener('click', () => {
     
   }
   if(done.data == editee.value){
-    console.log(done.data)
     done.data ='';
   }else{
+      gradeEmpty.style.display = 'none';
+      innerGrade.style.display = 'block';
     newSeason();
 
   }
@@ -675,7 +684,7 @@ function inputData(e){
         btn.innerHTML = '|||'
 
         let div5 = document.createElement('div')
-  div5.style.display = 'flex';
+        div5.classList.add('next')
   div5.appendChild(div)
         div5.appendChild(btn)
     
@@ -805,7 +814,7 @@ function restore(){
 add.addEventListener('click',() => {
   
 
-    if(editBox.children.length == 8){
+    if(editBox.children.length == 7){
 
     }else{
 
@@ -879,6 +888,10 @@ let score7 = JSON.parse(localStorage.getItem(score4[2]));
 }
 
 function range(){
+
+  if(innerGrade.style.display == 'none' || innerGrade.children.length ==1 ){
+    
+  }else{
 
   const A = 5;
   const B = 4;
@@ -988,6 +1001,7 @@ function range(){
 
   }
 }
+}
 
 
 
@@ -1043,11 +1057,15 @@ function innerG(e){
 
    }else if(tag.classList == 'grade-trash'){
        warrning.classList.add('war')
+       nav.style.pointerEvents = 'none'
+       footer.style.pointerEvents = 'none'
        let sect = tag.parentElement.children[0].innerHTML;
        let sect1 = tag.parentElement.parentElement
        warrningB.innerHTML = sect;
        sect1.data = sect;
-       cros.classList.add('activea')
+       
+       innerGrade.style.pointerEvents = 'none';
+     cros.classList.add('activea')
 
 
     }else if(tag.classList[0] == 'trash'){
@@ -1117,9 +1135,35 @@ function newSeason(){
 
 
    if(count == '' || index == '' || score == ''){
+    let pop = document.createElement('div');
+    pop.classList.add('popupin')
+    pop.style.background = 'lightcoral'
+    let p = document.createElement('p')
+    p.innerHTML = 'put in your courses';
+    pop.appendChild(p)
+    popupe.appendChild(pop);
 
+     done.data = editee.value;
+    setTimeout(() => {
+    
+   pop.remove()
+
+    }, 3000);
    }else if(count == '' && index == '' && score == ''){
+    let pop = document.createElement('div');
+    pop.classList.add('popupin')
+    pop.style.background = 'lightcoral'
+    let p = document.createElement('p')
+    p.innerHTML = 'put in your courses';
+    pop.appendChild(p)
+    popupe.appendChild(pop);
 
+     done.data = editee.value;
+    setTimeout(() => {
+    
+   pop.remove()
+
+    }, 3000);
    }else{
     recorded++;
   for(let i =0; i < editBox.children.length ; i++){
@@ -1144,7 +1188,7 @@ function newSeason(){
    btn.innerHTML = '|||'
 
    let div5 = document.createElement('div')
-  div5.style.display = 'flex';
+  div5.classList.add('next')
    div5.appendChild(div)
    div5.appendChild(btn)
  div4.appendChild(div5)
@@ -1236,6 +1280,9 @@ function storeCourse(course,credit,grade,sean){
 // clearing section
 function warrningClear(){
   warrning.classList.remove('war')
+     nav.style.pointerEvents = 'all'
+     footer.style.pointerEvents = 'all'
+     innerGrade.style.pointerEvents = 'all';
   for(let i = 0; i < innerGrade.children.length; i++){
   
    if(innerGrade.children[i].data){
@@ -1315,6 +1362,10 @@ cross.addEventListener('click', () => {
 cros.addEventListener('click', () => {
   cros.classList.remove('activea')
   warrning.classList.remove('war')
+  nav.style.pointerEvents = 'all'
+     footer.style.pointerEvents = 'all'
+     innerGrade.style.pointerEvents = 'all';
+
   for(let i = 0; i < innerGrade.children.length; i++){
   
     if(innerGrade.children[i].data){
@@ -1322,6 +1373,13 @@ cros.addEventListener('click', () => {
  
        }
    }
+})
+
+showInfBtn.addEventListener('click', () => {
+  showInf.classList.remove('activea')
+homePage.style.pointerEvents = 'all'; 
+nav.style.pointerEvents = 'all'
+footer.style.pointerEvents = 'all'
 })
 
 // other.addEventListener('click', e => {
