@@ -657,9 +657,34 @@ function inputData(e){
     
     
         if(count == '' || index == '' || score == ''){
-    
+            let pop = document.createElement('div');
+            pop.classList.add('popupin')
+            pop.style.background = 'lightcoral'
+            let p = document.createElement('p')
+            p.innerHTML = 'put in your courses';
+            pop.appendChild(p)
+            popupe.appendChild(pop);
+            setTimeout(() => {
+            
+           pop.remove()
+        
+            }, 3000);
+           }else if(count == '' && index == '' && score == ''){
+            
         }else if(count == '' && index == '' && score == ''){
-     
+          let pop = document.createElement('div');
+          pop.classList.add('popupin')
+          pop.style.background = 'lightcoral'
+          let p = document.createElement('p')
+          p.innerHTML = 'put in your courses';
+          pop.appendChild(p)
+          popupe.appendChild(pop);
+      
+          setTimeout(() => {
+          
+         pop.remove()
+      
+          }, 3000);
         }else{
     
        for(let i =0; i < editBox.children.length ; i++){
@@ -706,7 +731,6 @@ function inputData(e){
 
 
         let come = JSON.parse(localStorage.getItem(e))
-        console.log(come)
       
         let store1;
         let store2;
@@ -1074,6 +1098,42 @@ function innerG(e){
 }
 
 function newSeason(){
+  let count = editBox.children[0].children[0].value;
+ let index = editBox.children[0].children[1].value;
+ let score = editBox.children[0].children[2].value;
+
+
+  if(count == '' || index == '' || score == ''){
+    let pop = document.createElement('div');
+    pop.classList.add('popupin')
+    pop.style.background = 'lightcoral'
+    let p = document.createElement('p')
+    p.innerHTML = 'put in your courses';
+    pop.appendChild(p)
+    popupe.appendChild(pop);
+
+     done.data = editee.value;
+    setTimeout(() => {
+    
+   pop.remove()
+
+    }, 3000);
+   }else if(count == '' && index == '' && score == ''){
+    let pop = document.createElement('div');
+    pop.classList.add('popupin')
+    pop.style.background = 'lightcoral'
+    let p = document.createElement('p')
+    p.innerHTML = 'put in your courses';
+    pop.appendChild(p)
+    popupe.appendChild(pop);
+
+     done.data = editee.value;
+    setTimeout(() => {
+    
+   pop.remove()
+
+    }, 3000);
+   }else{
 
   let div1 = document.createElement('div');
   div1.classList.add('grade1');
@@ -1125,47 +1185,7 @@ function newSeason(){
   div1.appendChild(div3)
 
  innerGrade.appendChild(div1);
-
-
-
-
- let count = editBox.children[0].children[0].value;
- let index = editBox.children[0].children[1].value;
- let score = editBox.children[0].children[2].value;
-
-
-   if(count == '' || index == '' || score == ''){
-    let pop = document.createElement('div');
-    pop.classList.add('popupin')
-    pop.style.background = 'lightcoral'
-    let p = document.createElement('p')
-    p.innerHTML = 'put in your courses';
-    pop.appendChild(p)
-    popupe.appendChild(pop);
-
-     done.data = editee.value;
-    setTimeout(() => {
-    
-   pop.remove()
-
-    }, 3000);
-   }else if(count == '' && index == '' && score == ''){
-    let pop = document.createElement('div');
-    pop.classList.add('popupin')
-    pop.style.background = 'lightcoral'
-    let p = document.createElement('p')
-    p.innerHTML = 'put in your courses';
-    pop.appendChild(p)
-    popupe.appendChild(pop);
-
-     done.data = editee.value;
-    setTimeout(() => {
-    
-   pop.remove()
-
-    }, 3000);
-   }else{
-    recorded++;
+ 
   for(let i =0; i < editBox.children.length ; i++){
    let div = document.createElement('div')
    div.classList.add('result')
