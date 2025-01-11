@@ -727,12 +727,12 @@ footer .edite, footer .pro{
 }
 
 .grade1.height{
-    height: 80vh;
+    height: 64vh;
 }
 
 .grade1 .courses h3{
     font-size: 20px;
-    margin: 20px 26%;
+    margin: 10px 26%;
 }
 
 
@@ -748,7 +748,7 @@ footer .edite, footer .pro{
 .courses{
     overflow-y: auto;
     padding: 0 10px;
-    height: 100%;
+    height: 90%;
 
 }
 
@@ -838,11 +838,11 @@ text-align:right;
 
 .grade .inner-grade{
     overflow: hidden;
-    height: 470px;
+    height: 440px;
 
 }
 table{
-    bottom:2%;
+    bottom:-50px;
     margin: 0 auto;
     position: absolute;
     left: 18%;
@@ -860,7 +860,7 @@ table td{
 
 /* editing section */
 .editing{
-    width: 95%;
+    width: 100%;
     display: none;
     transition: all 0.5s ease;
     height: 90vh;
@@ -875,6 +875,7 @@ table td{
     width: 130px;
     height: 23px;
     overflow: hidden;
+    margin: 0 15px;
 }
 
 .editee{
@@ -921,8 +922,14 @@ table td{
 .editee .cross .cross2,.warrning .cros .cross2,.show-inf .show-inf-cross .cross2{
     transform: rotate(-45deg);
 }
+.edita .edit-box{
+    width: 100%;
+    padding:0 auto;
+
+}
 
 .editee input{
+
     display: block;
     width: 62%;
     height: 40px;
@@ -946,9 +953,12 @@ table td{
 }
 
 
-.edit{
-    width: 90%;
+.edita{
+    width: 95%;
     margin: 0 auto;
+    overflow-y: auto;
+    height: 68%;
+    border: none;
 }
 
 .edit-btn{
@@ -976,14 +986,17 @@ table td{
 
 
 
-.edit .input{
+.edita .input{
     display: flex;
     margin: 10px auto;
     width: 100%;
+    align-items: center;
+    padding:0 auto;
+
 
 }
 
-.edit .input input{
+.edita .input input{
     outline: none;
     border: none;
     background-color: rgb(214, 212, 212);
@@ -994,21 +1007,20 @@ table td{
     font-size: 15px;
 }
 
-.edit .input .course-input{
+.edita .input .course-input{
     width: 170px;
 }
-.edit .input .credit-input{
+.edita .input .credit-input{
     width: 70px;
 }
-.edit .input .grade-input{
+.edita .input .grade-input{
     width: 70px;
 }
 
 .era-del{
     display: flex;
     align-items: center;
-    position: absolute;
-    right: 10px;
+    justify-content: flex-end;
 }
 
 .era-del button img{

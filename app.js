@@ -12,7 +12,7 @@ const resultBox = document.querySelector('.grade1 .result-box');
 const courseTitle = document.querySelector('.result h4');
 const courseCredit = document.querySelector('.result .p1');
 const courseGrade = document.querySelector('.result .p2');
-const editBox = document.querySelector('.edit .edit-box');
+const editBox = document.querySelector('.edita .edit-box');
 const courseInput = document.querySelector('.one .course-input');
 const creditInput = document.querySelector('.one .credit-input');
 const gradeInput = document.querySelector('.one .grade-input');
@@ -352,10 +352,7 @@ function reload(){
     homePage.style.pointerEvents = 'none';
     nav.style.pointerEvents = 'none'
     footer.style.pointerEvents = 'none';
-    if(innerGrade.children.length == 1){
-      gradeEmpty.style.display = 'flex';
-      innerGrade.style.display = 'none';
-    }
+    
    let season;
    if(localStorage.getItem('season') == null){
     season = []
@@ -398,6 +395,15 @@ function reload(){
     
       let div3 = document.createElement('div');
       div3.classList.add('courses');
+
+      let div6 = document.createElement('h3')
+      div6.classList.add('gp')
+      div6.innerHTML = 'your GPA is '
+      let spa = document.createElement('span')
+      spa.innerHTML = '';
+      div6.appendChild(spa)
+      div3.appendChild(div6)
+
     
       let head = document.createElement('header')
     
@@ -420,14 +426,7 @@ function reload(){
     
       div3.appendChild(div4)
 
-      let div6 = document.createElement('h3')
-      div6.classList.add('gp')
-      div6.innerHTML = 'your GPA is '
-      let spa = document.createElement('span')
-      spa.innerHTML = '';
-      div6.appendChild(spa)
-      div3.appendChild(div6)
-
+      
       div1.appendChild(div3)
 
      
@@ -437,7 +436,10 @@ function reload(){
     })
 updateGrade()
 
-
+if(innerGrade.children.length == 1){
+  gradeEmpty.style.display = 'flex';
+  innerGrade.style.display = 'none';
+}
 
   }
 
@@ -454,7 +456,7 @@ set1.forEach(each => {
 
     if(innerGrade.children[a].children[0].children[0].innerHTML == each){
      
-      nexte(innerGrade.children[a].children[1].children[1],each,innerGrade.children[a].children[1].children[2].children[0])
+      nexte(innerGrade.children[a].children[1].children[2],each,innerGrade.children[a].children[1].children[0].children[0])
     }
    
 }
@@ -771,6 +773,8 @@ function updateData(e){
         }else{
     
        for(let i =0; i < editBox.children.length ; i++){
+
+          if(!(editBox.children[i].children[0].value == '') || !(editBox.children[i].children[1].value == '') || !(editBox.children[i].children[2].value == '')){
         let div = document.createElement('div')
         div.classList.add('result')
     
@@ -796,7 +800,7 @@ function updateData(e){
         div5.appendChild(div)
         div5.appendChild(btn)
     
-    innerGrade.children[a].children[1].children[1].appendChild(div5)
+    innerGrade.children[a].children[1].children[2].appendChild(div5)
 
    
 
@@ -855,10 +859,11 @@ function updateData(e){
         localStorage.setItem(come[2], JSON.stringify(store3))
        }
       range()
+       }
     }
 
     
-    let heat  = innerGrade.children[a].children[1].children[1].children;
+    let heat  = innerGrade.children[a].children[1].children[2].children;
     for(let i = 0; i < heat.length; i++){
 
      let cre = heat[i].children[0].children[1].innerHTML;
@@ -902,7 +907,7 @@ function updateData(e){
          let maths = Math.floor(total * 10);
         
         let gp = maths.toString()[0]+ '.' + maths.toString()[1];
-     let spa = innerGrade.children[a].children[1].children[2].children[0];
+     let spa = innerGrade.children[a].children[1].children[0].children[0];
        console.log(spa)
      if(maths < 15){
            spa.style.color = 'red'
@@ -983,7 +988,7 @@ function restore(){
 add.addEventListener('click',() => {
   
 
-    if(editBox.children.length == 7){
+    if(editBox.children.length == 9){
 
     }else{
 
@@ -1051,20 +1056,20 @@ let score7 = JSON.parse(localStorage.getItem(score4[2]));
     }
 
     let one =tag.parentElement.parentElement.parentElement;
-    let spa = one.children[2].children[0] ;
+    let spa = one.children[0].children[0] ;
 
-   if(one.children[1].children.length == 1){
+   if(one.children[2].children.length == 1){
    
     spa.innerHTML = '';
    }else{
 
       let slow = 0;
       let point = 0;
-      for(let i = 0; i < one.children[1].children.length; i++){
+      for(let i = 0; i < one.children[2].children.length; i++){
     
-       let cre = one.children[1].children[i].children[0].children[1].innerHTML;
-       let crea = one.children[1].children[i].children[0].children[0].innerHTML;
-       let gra = one.children[1].children[i].children[0].children[2].innerHTML;
+       let cre = one.children[2].children[i].children[0].children[1].innerHTML;
+       let crea = one.children[2].children[i].children[0].children[0].innerHTML;
+       let gra = one.children[2].children[i].children[0].children[2].innerHTML;
     if(tag.parentElement.children[0].children[0].innerHTML == crea && tag.parentElement.children[0].children[2].innerHTML == gra && tag.parentElement.children[0].children[1].innerHTML == cre){
     }else{
        gpe(cre,gra)
@@ -1166,7 +1171,7 @@ function range(){
       }else if(e[i] == 'C'){
         score += C;
       }else if(e[i] == 'D'){
-        score += D;
+        down += D;
       }else if(e[i] == 'E'){
         down += E;
       }else if(e[i] == 'F'){
@@ -1377,6 +1382,13 @@ function newSeason(){
 
   let div3 = document.createElement('div');
   div3.classList.add('courses');
+  let div6 = document.createElement('h3')
+  div6.classList.add('gp')
+  div6.innerHTML = 'your GPA is '
+  let spa = document.createElement('span')
+  
+  div6.appendChild(spa)
+  div3.appendChild(div6)
 
   let head = document.createElement('header')
 
@@ -1399,22 +1411,7 @@ function newSeason(){
 
   div3.appendChild(div4)
 
-  let div6 = document.createElement('h3')
-  div6.classList.add('gp')
-  div6.innerHTML = 'your GPA is '
-  let spa = document.createElement('span')
-  
-  div6.appendChild(spa)
-  div3.appendChild(div6)
-
- 
-
-
-  
-
   div1.appendChild(div3)
-
-   
 
  innerGrade.appendChild(div1);
   let slow = 0;
@@ -1469,14 +1466,12 @@ function newSeason(){
  
 
   function gpe(credit,grad){
-    console.log(credit,grad)
     const A = 5;
     const B = 4;
     const C = 3;
     const D = 2;
     const E = 1;
     const F = 0;
-    console.log(slow,point);
 
     switch(grad){
       case 'A':
@@ -1487,7 +1482,6 @@ function newSeason(){
 
         slow += Number(credit * B);
         point += Number(credit);
-        console.log(slow,point);
 
         break;
       case 'C':
@@ -1508,10 +1502,8 @@ function newSeason(){
         break;
 
     }
-    console.log(slow,point)
 
   }
-  console.log(slow,point)
   let total =slow/point;
    
     let maths = Math.floor(total * 10);
