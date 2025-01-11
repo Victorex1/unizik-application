@@ -83,6 +83,9 @@ let recorded = 0;
 let cours = 'course';
 let grad = 'grade';
 let credite = 'credit';
+let slow = 0;
+  let point = 0;
+
 
 // declearnig function
 register.addEventListener('click', submit);
@@ -284,7 +287,6 @@ function submit(){
      regNolabel.style.color = 'black'
      }, 2000);
   } else {
-    console.log('hello');
     storageSign(nameInput.value,departmentInput.value,passwordInput.value,regNoInput.value);
     homeName.innerHTML = nameInput.value,
     homeDep.innerHTML = departmentInput.value,
@@ -345,8 +347,22 @@ function reload(){
     profileImg.style.backgroundSize = 'cover';
     profileImg.style.backgroundPosition = 'center';
     homeImg.src = scor4;
-
-   let season = JSON.parse(localStorage.getItem('season'))
+      
+    showInf.classList.add('activea')
+    homePage.style.pointerEvents = 'none';
+    nav.style.pointerEvents = 'none'
+    footer.style.pointerEvents = 'none';
+    if(innerGrade.children.length == 1){
+      gradeEmpty.style.display = 'flex';
+      innerGrade.style.display = 'none';
+    }
+   let season;
+   if(localStorage.getItem('season') == null){
+    season = []
+   }else{
+    season = JSON.parse(localStorage.getItem('season'));
+   }
+   
     season.forEach(each => {
       let opt = document.createElement('option');
       opt.value = each;
@@ -403,21 +419,25 @@ function reload(){
       div4.classList.add('result-box');
     
       div3.appendChild(div4)
+
+      let div6 = document.createElement('h3')
+      div6.classList.add('gp')
+      div6.innerHTML = 'your GPA is '
+      let spa = document.createElement('span')
+      spa.innerHTML = '';
+      div6.appendChild(spa)
+      div3.appendChild(div6)
+
       div1.appendChild(div3)
+
+     
     
      innerGrade.appendChild(div1);
 
     })
 updateGrade()
-showInf.classList.add('activea')
-homePage.style.pointerEvents = 'none';
-nav.style.pointerEvents = 'none'
-footer.style.pointerEvents = 'none'
 
-if(innerGrade.children.length == 1){
-  gradeEmpty.style.display = 'flex';
-  innerGrade.style.display = 'none';
-}
+
 
   }
 
@@ -434,7 +454,7 @@ set1.forEach(each => {
 
     if(innerGrade.children[a].children[0].children[0].innerHTML == each){
      
-      nexte(innerGrade.children[a].children[1].children[1],each)
+      nexte(innerGrade.children[a].children[1].children[1],each,innerGrade.children[a].children[1].children[2].children[0])
     }
    
 }
@@ -442,15 +462,25 @@ set1.forEach(each => {
 
 })
 
-function nexte(next,each){
+function nexte(next,each,spa){
+  let slow = 0;
+  let point = 0;
 
   let set2 = JSON.parse(localStorage.getItem(each))
   let set3 = JSON.parse(localStorage.getItem(set2[0]))
+if(set3.length == 0){
+  spa.innerHTM = '';
+}else{
+
 
   for(let a = 0; a < set3.length; a++ ){
 
     let div = document.createElement('div')
     div.classList.add('result')
+    let p1 = document.createElement('p');
+    let p2 = document.createElement('p');
+
+
   set2.forEach(get => {
     let set3 = JSON.parse(localStorage.getItem(get))
    
@@ -461,18 +491,23 @@ function nexte(next,each){
  
     }else if(set2[1] == get){
 
-      let p1 = document.createElement('p');
       p1.innerHTML =set3[a];
+
       div.appendChild(p1);
     }else if(set2[2] == get){
 
 
-      let p2 = document.createElement('p');
       p2.innerHTML = set3[a];
-      div.appendChild(p2);
+   div.appendChild(p2);
    
     }
-   
+    if(set3.length == 0){
+      
+      spa.innerHTML = '';
+     }else{
+   gpe(p1.innerHTML,p2.innerHTML)
+     }
+
   })
   let btn = document.createElement('button');
   btn.classList.add('trash')
@@ -486,8 +521,55 @@ function nexte(next,each){
   div5.appendChild(btn)
 next.appendChild(div5)
  }
-  
-  
+ function gpe(credit,grad){
+  const A = 5;
+  const B = 4;
+  const C = 3;
+  const D = 2;
+  const E = 1;
+  const F = 0;
+    
+  if(grad == 'A'){ 
+    slow +=credit * A;
+    point +=Number(credit);
+  }else if(grad == 'B'){
+    slow +=credit* B;
+    point += Number(credit);
+
+  }else if(grad == 'C'){
+    slow +=credit * C;
+    point += Number(credit);
+  }else if(grad == 'D'){
+    slow +=credit * D;
+    point += Number(credit);
+  }else if(grad == 'E'){
+    slow +=credit * E;
+    point += Number(credit) ;
+  }else if(grad == 'F'){
+    slow +=credit * F;
+    point +=Number(credit);
+  }
+
+}
+let total =slow/point;
+   
+    let maths = Math.floor(total * 10);
+   
+   let gp = maths.toString()[0]+ '.' + maths.toString()[1];
+  if(maths < 15){
+      spa.style.color = 'red'
+      spa.innerHTML = gp;
+
+
+  }else if(maths < 25){
+    spa.style.color = 'rgb(221, 221, 69)'
+    spa.innerHTML = gp;
+  }else{
+    spa.style.color = 'green'
+    spa.innerHTML = gp;
+
+  }
+}
 }
 }
 
@@ -580,7 +662,8 @@ const store =  URL.createObjectURL(file.files[0]);
 
   };
 
-  score5.push(file.files[0]);
+
+  score5.push(store);
 
   localStorage.setItem('img', JSON.stringify(score5))
 }
@@ -625,7 +708,7 @@ editBtn.addEventListener('click', () => {
   editee.classList.remove('activea')
 editee.value = '';
   }else if(options.data){
-        inputData(options.data)
+        updateData(options.data)
        
   }else{
     let pop = document.createElement('div');
@@ -647,7 +730,9 @@ editee.value = '';
 })
 
 
-function inputData(e){
+function updateData(e){
+  let slow = 0;
+  let point = 0;
    for(let a = 0; a < innerGrade.children.length; a++ ){
 
     if(innerGrade.children[a].children[0].children[0].innerHTML == e){
@@ -669,8 +754,6 @@ function inputData(e){
            pop.remove()
         
             }, 3000);
-           }else if(count == '' && index == '' && score == ''){
-            
         }else if(count == '' && index == '' && score == ''){
           let pop = document.createElement('div');
           pop.classList.add('popupin')
@@ -710,12 +793,12 @@ function inputData(e){
 
         let div5 = document.createElement('div')
         div5.classList.add('next')
-  div5.appendChild(div)
+        div5.appendChild(div)
         div5.appendChild(btn)
     
     innerGrade.children[a].children[1].children[1].appendChild(div5)
 
-
+   
 
       let count = editBox.children[i].children[0].value;
       let index = editBox.children[i].children[1].value;
@@ -726,7 +809,8 @@ function inputData(e){
        editBox.children[i].children[1].value = '';
       editBox.children[i].children[2].value = '';
        }
-    
+
+
        function storage(course,credit,grade, e){
 
 
@@ -772,6 +856,67 @@ function inputData(e){
        }
       range()
     }
+
+    
+    let heat  = innerGrade.children[a].children[1].children[1].children;
+    for(let i = 0; i < heat.length; i++){
+
+     let cre = heat[i].children[0].children[1].innerHTML;
+     let gra = heat[i].children[0].children[2].innerHTML;
+     gpe(cre,gra)
+    }
+
+
+     function gpe(credit,grad){
+       const A = 5;
+       const B = 4;
+       const C = 3;
+       const D = 2;
+       const E = 1;
+       const F = 0;
+         
+       if(grad == 'A'){ 
+         slow +=credit * A;
+         point +=Number(credit);
+       }else if(grad == 'B'){
+         slow +=credit* B;
+         point += Number(credit);
+     
+       }else if(grad == 'C'){
+         slow +=credit * C;
+         point += Number(credit);
+       }else if(grad == 'D'){
+         slow +=credit * D;
+         point += Number(credit);
+       }else if(grad == 'E'){
+         slow +=credit * E;
+         point += Number(credit) ;
+       }else if(grad == 'F'){
+         slow +=credit * F;
+         point +=Number(credit);
+       }
+     
+     }
+     let total =slow/point;
+        
+         let maths = Math.floor(total * 10);
+        
+        let gp = maths.toString()[0]+ '.' + maths.toString()[1];
+     let spa = innerGrade.children[a].children[1].children[2].children[0];
+       console.log(spa)
+     if(maths < 15){
+           spa.style.color = 'red'
+           spa.innerHTML = gp;
+     
+     
+       }else if(maths < 25){
+         spa.style.color = 'rgb(221, 221, 69)';
+         spa.innerHTML = gp;
+       }else{
+         spa.style.color = 'green'
+         spa.innerHTML = gp;
+     
+       }
     }  
     }
   }
@@ -905,10 +1050,79 @@ let score7 = JSON.parse(localStorage.getItem(score4[2]));
 
     }
 
+    let one =tag.parentElement.parentElement.parentElement;
+    let spa = one.children[2].children[0] ;
+
+   if(one.children[1].children.length == 1){
+   
+    spa.innerHTML = '';
+   }else{
+
+      let slow = 0;
+      let point = 0;
+      for(let i = 0; i < one.children[1].children.length; i++){
+    
+       let cre = one.children[1].children[i].children[0].children[1].innerHTML;
+       let crea = one.children[1].children[i].children[0].children[0].innerHTML;
+       let gra = one.children[1].children[i].children[0].children[2].innerHTML;
+    if(tag.parentElement.children[0].children[0].innerHTML == crea && tag.parentElement.children[0].children[2].innerHTML == gra && tag.parentElement.children[0].children[1].innerHTML == cre){
+    }else{
+       gpe(cre,gra)
+    }
+      }
+    
+    
+       function gpe(credit,grad){
+         const A = 5;
+         const B = 4;
+         const C = 3;
+         const D = 2;
+         const E = 1;
+         const F = 0;
+           
+         if(grad == 'A'){ 
+           slow +=credit * A;
+           point +=Number(credit);
+         }else if(grad == 'B'){
+           slow +=credit* B;
+           point += Number(credit);
+       
+         }else if(grad == 'C'){
+           slow +=credit * C;
+           point += Number(credit);
+         }else if(grad == 'D'){
+           slow +=credit * D;
+           point += Number(credit);
+         }else if(grad == 'E'){
+           slow +=credit * E;
+           point += Number(credit) ;
+         }else if(grad == 'F'){
+           slow +=credit * F;
+           point +=Number(credit);
+         }
+       
+       }
+       let total =slow/point;
+          
+           let maths = Math.floor(total * 10);
+          
+          let gp = maths.toString()[0]+ '.' + maths.toString()[1];
+       if(maths < 15){
+             spa.style.color = 'red'
+             spa.innerHTML = gp;
+       
+       
+         }else if(maths < 25){
+           spa.style.color = 'rgb(221, 221, 69)'
+           spa.innerHTML = gp;
+         }else{
+           spa.style.color = 'green'
+           spa.innerHTML = gp;
+       
+         }
+    }
     tag.parentElement.remove()
-   
-   
-  
+
 }
 
 function range(){
@@ -1096,8 +1310,9 @@ function innerG(e){
       innerTrash(tag);
   }
 }
-
+   
 function newSeason(){
+  
   let count = editBox.children[0].children[0].value;
  let index = editBox.children[0].children[1].value;
  let score = editBox.children[0].children[2].value;
@@ -1112,7 +1327,6 @@ function newSeason(){
     pop.appendChild(p)
     popupe.appendChild(pop);
 
-     done.data = editee.value;
     setTimeout(() => {
     
    pop.remove()
@@ -1127,13 +1341,15 @@ function newSeason(){
     pop.appendChild(p)
     popupe.appendChild(pop);
 
-     done.data = editee.value;
     setTimeout(() => {
     
    pop.remove()
 
     }, 3000);
    }else{
+
+    
+
 
   let div1 = document.createElement('div');
   div1.classList.add('grade1');
@@ -1182,11 +1398,30 @@ function newSeason(){
   div4.classList.add('result-box');
 
   div3.appendChild(div4)
+
+  let div6 = document.createElement('h3')
+  div6.classList.add('gp')
+  div6.innerHTML = 'your GPA is '
+  let spa = document.createElement('span')
+  
+  div6.appendChild(spa)
+  div3.appendChild(div6)
+
+ 
+
+
+  
+
   div1.appendChild(div3)
 
+   
+
  innerGrade.appendChild(div1);
- 
+  let slow = 0;
+  let point = 0;
   for(let i =0; i < editBox.children.length ; i++){
+    if(!(editBox.children[i].children[0].value == '') || !(editBox.children[i].children[1].value == '') || !(editBox.children[i].children[2].value == '')){
+  
    let div = document.createElement('div')
    div.classList.add('result')
 
@@ -1224,6 +1459,76 @@ function newSeason(){
  editBox.children[i].children[0].value = '';
   editBox.children[i].children[1].value = '';
  editBox.children[i].children[2].value = '';
+ if(!(p1.innerHTML == '') || !(p2.innerHTML == '')){
+  gpe(p1.innerHTML,p2.innerHTML) 
+
+ }
+}
+
+  }
+ 
+
+  function gpe(credit,grad){
+    console.log(credit,grad)
+    const A = 5;
+    const B = 4;
+    const C = 3;
+    const D = 2;
+    const E = 1;
+    const F = 0;
+    console.log(slow,point);
+
+    switch(grad){
+      case 'A':
+        slow += Number(credit * A);
+        point +=Number(credit);
+        break;
+      case 'B':
+
+        slow += Number(credit * B);
+        point += Number(credit);
+        console.log(slow,point);
+
+        break;
+      case 'C':
+        slow += Number(credit * C);
+        point += Number(credit);
+        break;
+      case 'D':
+        slow += Number(credit * D);
+        point += Number(credit);
+        break;
+      case 'E':
+        slow += Number(credit * E);
+        point += Number(credit) ;
+        break;
+      case 'F':
+        slow += Number(credit * F);
+        point +=Number(credit);
+        break;
+
+    }
+    console.log(slow,point)
+
+  }
+  console.log(slow,point)
+  let total =slow/point;
+   
+    let maths = Math.floor(total * 10);
+   
+   let gp = maths.toString()[0]+ '.' + maths.toString()[1];
+  if(maths < 15){
+      spa.style.color = 'red'
+      spa.innerHTML = gp;
+
+
+  }else if(maths < 25){
+    spa.style.color = 'yellow'
+    spa.innerHTML = gp;
+  }else{
+    spa.style.color = 'rgb(221, 221, 69)'
+    spa.innerHTML = gp;
+
   }
   let opt = document.createElement('option');
   opt.value = editee.value;
@@ -1401,15 +1706,3 @@ homePage.style.pointerEvents = 'all';
 nav.style.pointerEvents = 'all'
 footer.style.pointerEvents = 'all'
 })
-
-// other.addEventListener('click', e => {
-//   tag = e.target;
-//   if(tag.type=="checkbox"){
-//     if(tag.checked){
-//       nameInput.autocomplete="additional-name";
-
-//     }
-
-//   }
-
-// })
