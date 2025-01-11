@@ -340,7 +340,7 @@ function reload(){
     formHead.innerHTML  =`Welcome back ${score}`;
     wrapper.style.height = '400px';
 
-   const scor4 = JSON.parse(localStorage.getItem('img'))
+   const scor4 = localStorage.getItem('img')
 
 
     profileImg.style.background = `url(${scor4})`;
@@ -629,45 +629,47 @@ window.addEventListener('DOMContentLoaded' , wait);
 fileSelect.addEventListener('click', () => file.click() );
 file.onchange = function(){
 
+ 
+
+
   if(!(localStorage.getItem('img') == null)){
 
-    let score1 = JSON.parse(localStorage.getItem('img'));
-    score1.splice(score1.indexOf(score1), 1);
-    localStorage.setItem('img', JSON.stringify(score1))
 
-    const store =  URL.createObjectURL(file.files[0]);
+    let score1 = localStorage.getItem('img');
+    localStorage.removeItem(score1)
+    localStorage.setItem('img', score1)
 
-  profileImg.style.background = `url(${store})`;
-  profileImg.style.backgroundSize = 'cover';
-  profileImg.style.backgroundPosition = 'center';
-  homeImg.src = store;
-
+    let date = new FileReader();
+    date.readAsDataURL(file.files[0])
   
-  score1.push(store)
-  localStorage.setItem('img', JSON.stringify(score1))
+    date.addEventListener('load', () => {
+  
+    localStorage.setItem('img', date.result)
 
-  }else{
 
-
-const store =  URL.createObjectURL(file.files[0]);
-  profileImg.style.background = `url(${store})`;
+  profileImg.style.background = `url(${date.result})`;
   profileImg.style.backgroundSize = 'cover';
   profileImg.style.backgroundPosition = 'center';
-  homeImg.src = store;
+  homeImg.src = date.result;
 
-  let score5;
+ 
 
-  if(localStorage.getItem('img') == null){
-     score5 = []
+  })
+
   }else{
-    score5 = JSON.parse(localStorage.getItem('img'))
 
-  };
-
-
-  score5.push(store);
-
-  localStorage.setItem('img', JSON.stringify(score5))
+    let date = new FileReader();
+    date.readAsDataURL(file.files[0])
+  
+    date.addEventListener('load', () => {
+      console.log(date.result)
+  
+    localStorage.setItem('img', date.result)
+    profileImg.style.background = `url(${date.result})`;
+    profileImg.style.backgroundSize = 'cover';
+    profileImg.style.backgroundPosition = 'center';
+    homeImg.src = date.result;
+    })
 }
 }
 
