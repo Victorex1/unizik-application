@@ -76,7 +76,14 @@ const  nav = document.querySelector('nav');
 const  gradeEmpty = document.querySelector('.grade .empty')
 
 const showInfBtn = document.querySelector('.show-inf-cross')
-const showInf = document.querySelector('.show-inf')
+const showInf = document.querySelector('.show-inf');
+const navigate = document.querySelector('.navigate');
+const indicate = document.querySelector('.indicate');
+const profileicon = document.querySelector('.pro');
+const editsect = document.querySelector('.edite');
+const homeBtn = document.querySelector('.img1');
+const listofCourses = document.querySelector('.selection .lis');
+
 
 // sign in page
 let recorded = 0;
@@ -88,6 +95,12 @@ let slow = 0;
 
 
 // declearnig function
+editsect.addEventListener('click', () => {
+  if(localStorage.getItem('season') == null){
+    navigat2()
+  }
+})
+
 register.addEventListener('click', submit);
 signOut.addEventListener('click', signout);
 registerOne.addEventListener('click', login)
@@ -168,7 +181,152 @@ function createPassword(){
      }, 2000);
   }
 }
+// navigateing section
+const navigat = () => {
+    homePage.style.pointerEvents = 'none';
+    nav.style.pointerEvents = 'none';
+    navigate.style.display= 'block';
+    profileicon.style.pointerEvents = 'none';
+    homeBtn.style.pointerEvents = 'none';
+    navigate.classList.add('navigate1');
+}
 
+function navigat2(){
+  homePage.style.pointerEvents = 'all';
+  navigate.classList.remove('navigate1')
+  courseInput.style.pointerEvents = 'none'
+  options.style.pointerEvents = 'none'
+  editBtn.style.pointerEvents = 'none';
+  trash.style.pointerEvents = 'none';
+    editsect.style.pointerEvents = 'none';
+  navigate.classList.add('navigate2')
+  navigate.children[0].innerHTML = 'Here, when you click the plus button, you can bring more input space to write your courses'
+}
+
+function navigat3(){
+  trash.style.pointerEvents = 'all';
+  add.style.pointerEvents = 'none';
+  navigate.classList.remove('navigate2')
+  navigate.classList.add('navigate3')
+  navigate.children[0].innerHTML = 'here, you can delet the input space that already exist';
+}
+
+function navigat4(){
+  trash.style.pointerEvents = 'none';
+  navigate.classList.remove('navigate3')
+  navigate.classList.add('navigate4')
+  options.style.pointerEvents = 'all';
+
+  navigate.children[0].innerHTML = "here, you need to select <b>New section</b>, if an input box didn't show click it again to show"
+}
+
+function navigat5(){
+  navigate.classList.remove('navigate4')
+  navigate.classList.add('navigate5')
+  navigate.children[0].innerHTML = 'Here you can wright your choice of season';
+}
+
+function navigat6(){
+  navigate.classList.remove('navigate5')
+  trash.style.pointerEvents = 'all';
+  add.style.pointerEvents = 'all';
+  courseInput.style.pointerEvents = 'all'
+
+  navigate.classList.add('navigate6')
+  navigate.children[0].innerHTML = 'After wrighting your choice of season, you can wright your courses here, if you want you can add more input space'
+}
+
+function navigat7(){
+  navigate.classList.remove('navigate6')
+  editBtn.style.pointerEvents = 'all';
+  navigate.classList.add('navigate7')
+  navigate.children[0].innerHTML ='when you are through inputing your courses, click here to submit your courses for arrangment, analysing and calculation of gp'
+}
+
+function navigat8(){
+  navigate.classList.remove('navigate7')
+  homeBtn.style.pointerEvents = 'all';
+  editBtn.style.pointerEvents = 'none';
+  navigate.classList.add('navigate8')
+  navigate.children[0].innerHTML = "Now that you are through editing your courses click home button to go back to home page";
+}
+function navigat9(){
+  navigate.classList.remove('navigate8')
+  homeBtn.style.pointerEvents = 'none';
+  editBtn.style.pointerEvents = 'none';
+  navigate.classList.add('navigate9')
+  navigate.children[0].innerHTML ='click here to see your courses'
+
+}
+
+function navigat10(){
+  navigate.classList.remove('navigate9')
+  homeBtn.style.pointerEvents = 'none';
+  navigate.classList.add('navigate10')
+  navigate.children[0].innerHTML ='Now you can click this header for you to see your courses and click again to hide them'
+}
+
+function navigat11(){
+
+  navigate.classList.remove('navigate10')
+  navigate.style.display = 'none';
+  profileicon.style.pointerEvents = 'all'
+  homeBtn.style.pointerEvents = 'all';
+  editsect.style.pointerEvents = 'all';
+  editee.data = undefined;
+  courseInput.data = undefined;
+  options.data = undefined;
+  trash.data = undefined;
+  add.data = undefined;
+ 
+  setTimeout(() => {
+  navigate.style.display = 'block';
+  navigate.classList.add('navigate11')
+  navigate.data = 'data'
+  navigate.children[0].innerHTML ='you can also check out your profile where you can change your image and see your personal details'
+  }, 2000);
+}
+
+editee.addEventListener('mousedown', () => {
+ 
+  if(editee.data == undefined){
+  if(localStorage.getItem('season') == null){
+    
+    navigat6()
+    editee.data = 'late'
+  }
+  }
+})
+
+courseInput.addEventListener('mousedown', () => {
+  if(courseInput.data == undefined){
+
+  if(localStorage.getItem('season') == null){
+    navigat7();
+    courseInput.data = 'pet'
+  }
+}
+})
+homeBtn.addEventListener('click', () => {
+  if(courseInput.data == 'pet'){
+    navigat9();
+  }
+  
+})
+
+listofCourses.addEventListener('click', () => {
+  if(courseInput.data == 'pet'){
+    navigat10()
+  }
+  
+})
+
+profileicon.addEventListener('click', () => {
+  if(  navigate.data == 'data'){
+    navigate.style.display = 'none';
+    navigate.classList.remove('navigate11')
+  }
+})
 
 function rember(){
   password.style.display = 'none';
@@ -214,11 +372,16 @@ function login(){
      passwordlabel.style.color = 'black';
       }, 2000);
     }
+
+    if(localStorage.getItem('season') == null){
+      navigat()
+    }
 }
 
 
 
 function imge(){
+ 
   if(passwordImg.src == "http://127.0.0.1:5500/img/eyeclose.png"){
 
     passwordImg.src = "http://127.0.0.1:5500/img/eyeopen.png";
@@ -228,6 +391,7 @@ function imge(){
     passwordInput.type = 'password'
      
   }
+  
 }
 
 function submit(){
@@ -319,6 +483,9 @@ function reload(){
   if(localStorage.getItem('appPassword') == '[]' || localStorage.getItem('appPassword') == null){
     //  reset()
   }else{
+ passwordInput.value = '';
+nameInput.value = '';
+
     let score = JSON.parse(localStorage.getItem('appName'))
     let score1 = JSON.parse(localStorage.getItem('appDepartment'))
     let score2 = JSON.parse(localStorage.getItem('appRegNo'))
@@ -348,10 +515,10 @@ function reload(){
     profileImg.style.backgroundPosition = 'center';
     homeImg.src = scor4;
       
-    showInf.classList.add('activea')
-    homePage.style.pointerEvents = 'none';
-    nav.style.pointerEvents = 'none'
-    footer.style.pointerEvents = 'none';
+    // showInf.classList.add('activea')
+    // homePage.style.pointerEvents = 'none';
+    // nav.style.pointerEvents = 'none'
+    // footer.style.pointerEvents = 'none';
     
    let season;
    if(localStorage.getItem('season') == null){
@@ -378,6 +545,7 @@ function reload(){
       let h21 = document.createElement('h2');
       h21.classList.add('head')
       h21.innerHTML = each;
+
       div2.appendChild(h21);
     
       let btn = document.createElement('button')
@@ -436,10 +604,12 @@ function reload(){
     })
 updateGrade()
 
-if(innerGrade.children.length == 1){
+if(innerGrade.children.length < 1){
   gradeEmpty.style.display = 'flex';
   innerGrade.style.display = 'none';
 }
+
+
 
   }
 
@@ -447,7 +617,7 @@ if(innerGrade.children.length == 1){
 
 
 function updateGrade(){
-
+if(!(localStorage.getItem('season') == null || localStorage.getItem('season') == '[]')){
   let set1 = JSON.parse(localStorage.getItem('season'))
 
 set1.forEach(each => {
@@ -563,7 +733,7 @@ let total =slow/point;
       spa.innerHTML = gp;
 
 
-  }else if(maths < 25){
+  }else if(maths < 30){
     spa.style.color = 'rgb(221, 221, 69)'
     spa.innerHTML = gp;
   }else{
@@ -571,6 +741,7 @@ let total =slow/point;
     spa.innerHTML = gp;
 
   }
+}
 }
 }
 }
@@ -618,6 +789,7 @@ function storageSign(name,dep,pass,reg){
 }
 
 
+
 // App page
 window.addEventListener('DOMContentLoaded' , restore);
 window.addEventListener('DOMContentLoaded' , range);
@@ -638,7 +810,6 @@ file.onchange = function(){
     let score1 = localStorage.getItem('img');
     localStorage.removeItem(score1)
     localStorage.setItem('img', score1)
-
     let date = new FileReader();
     date.readAsDataURL(file.files[0])
   
@@ -702,9 +873,29 @@ editBtn.addEventListener('click', () => {
   if(done.data == editee.value){
     done.data ='';
   }else{
+    if(!(editee.value == '')){
       gradeEmpty.style.display = 'none';
       innerGrade.style.display = 'block';
     newSeason();
+    console.log('home')
+    
+    
+    }else{
+      let pop = document.createElement('div');
+      pop.classList.add('popupin')
+      pop.style.background = 'lightcoral'
+      let p = document.createElement('p')
+      p.innerHTML = "please input season";
+      pop.appendChild(p)
+      popupe.appendChild(pop);
+  
+      setTimeout(() => {
+      
+     pop.remove()
+  
+      }, 3000);
+    }
+      
 
   }
 
@@ -712,22 +903,23 @@ editBtn.addEventListener('click', () => {
   editee.classList.remove('activea')
 editee.value = '';
   }else if(options.data){
+    
         updateData(options.data)
        
   }else{
     let pop = document.createElement('div');
-    pop.classList.add('popupin')
-    pop.style.background = 'lightcoral'
-    let p = document.createElement('p')
-    p.innerHTML = "No season selected Yet";
-    pop.appendChild(p)
-    popupe.appendChild(pop);
-
-    setTimeout(() => {
-    
-   pop.remove()
-
-    }, 3000);
+      pop.classList.add('popupin')
+      pop.style.background = 'lightcoral'
+      let p = document.createElement('p')
+      p.innerHTML = "No season selected Yet";
+      pop.appendChild(p)
+      popupe.appendChild(pop);
+  
+      setTimeout(() => {
+      
+     pop.remove()
+  
+      }, 3000);
   }
   cross.classList.remove('activea');
   range()
@@ -1017,6 +1209,13 @@ add.addEventListener('click',() => {
 
     editBox.appendChild(div)
     }
+    if(add.data == undefined){
+      if(localStorage.getItem('season') == null){
+    navigat3()
+    add.data = 'pol'
+      }
+    }
+    
 })
 
 
@@ -1026,6 +1225,13 @@ trash.addEventListener('click', () => {
     let count = editBox.lastChild;
 
     count.remove();
+    if(trash.data == undefined){
+      if(localStorage.getItem('season') == null){
+    navigat4()
+    trash.data = 'hale'
+    }
+  }
+    
 })
 
 function innerTrash(tag) {
@@ -1119,7 +1325,7 @@ let score7 = JSON.parse(localStorage.getItem(score4[2]));
              spa.innerHTML = gp;
        
        
-         }else if(maths < 25){
+         }else if(maths < 30){
            spa.style.color = 'rgb(221, 221, 69)'
            spa.innerHTML = gp;
          }else{
@@ -1144,8 +1350,11 @@ function range(){
   const D = 2;
   const E = 1;
   const F = 0;
-  let score4 = JSON.parse(localStorage.getItem('season'));
 
+  if(!(localStorage.getItem('season') == null || localStorage.getItem('season') == "[]")){
+    
+  let score4 = JSON.parse(localStorage.getItem('season'));
+  
   let score = 0;
   let down = 0;
   let slow = 0;
@@ -1159,7 +1368,7 @@ function range(){
   let score2 = JSON.parse(localStorage.getItem(score3[1]));
   let score1 = JSON.parse(localStorage.getItem(score3[2]));
    calc(score1,score2)
-    
+  
   }
 
   // performance calculation
@@ -1246,6 +1455,7 @@ function range(){
 
   }
 }
+  }
 }
 
 
@@ -1264,13 +1474,12 @@ registerOne.classList.remove('active');
 formHead.innerHTML  = 'Register';
 wrapper.style.height = '550px';
 
+
 localStorage.removeItem('appName')
 localStorage.removeItem('appPassword')
 localStorage.removeItem('appDepartment')
 localStorage.removeItem('appRegNo')
 localStorage.removeItem('img')
-localStorage.removeItem('appName')
-localStorage.removeItem('appName')
 
 let clea;
 if(localStorage.getItem('season') == null){
@@ -1298,7 +1507,11 @@ function innerG(e){
 
    if(tag.classList == 'h2'){
 
-    tag.parentElement.classList.toggle('height')
+    tag.parentElement.classList.toggle('height');
+    if(courseInput.data = 'pet'){
+    navigat11()
+    }
+    
 
    }else if(tag.classList == 'grade-trash'){
        warrning.classList.add('war')
@@ -1355,9 +1568,10 @@ function newSeason(){
     }, 3000);
    }else{
 
-    
-
-
+    if(localStorage.getItem('season') == null){
+      navigat8();
+      }
+      
   let div1 = document.createElement('div');
   div1.classList.add('grade1');
 
@@ -1512,15 +1726,15 @@ function newSeason(){
    
    let gp = maths.toString()[0]+ '.' + maths.toString()[1];
   if(maths < 15){
-      spa.style.color = 'red'
+      spa.style.color = 'red';
       spa.innerHTML = gp;
 
 
-  }else if(maths < 25){
-    spa.style.color = 'yellow'
+  }else if(maths < 30){
+    spa.style.color = 'yellow';
     spa.innerHTML = gp;
   }else{
-    spa.style.color = 'rgb(221, 221, 69)'
+    spa.style.color = 'green';
     spa.innerHTML = gp;
 
   }
@@ -1652,6 +1866,14 @@ function remopt(e){
      if(tag.value == 'edit'){
         editee.classList.add('activea')
         cross.classList.add('activea')
+        if(options.data == undefined){
+          if(localStorage.getItem('season') == null){
+            navigat5();
+            options.data = 'poly'
+                }
+        }
+      
+        
      }else if(tag.value == 'section'){
       editee.classList.remove('activea')
   cross.classList.remove('activea')
