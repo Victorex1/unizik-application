@@ -397,6 +397,8 @@ function login(){
 
      body.classList.add('active');
      bodyInner.classList.add('active');
+     passwordInput.value = ''
+     nameInput.value = ''
 
      if(localStorage.getItem('season') == null){
       navigat()
