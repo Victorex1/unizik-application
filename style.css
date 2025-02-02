@@ -102,6 +102,13 @@
     z-index: 2;
     box-shadow: 5px 5px 10px rgba(0,0,0,0.9);
 }
+.navigate12{
+    border-radius: 18px 18px 0 18px ;
+    bottom: 40px;
+    right: 65px;
+    z-index: 2;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.9);
+}
 .indicate{
     display: none;
     position: absolute;
@@ -1008,7 +1015,7 @@ table td{
     margin: 10px 0;
     position: absolute;
     top: -30px;
-    left: 290px;
+    left: 270px;
 }
 
 .warrning .cros .crosss{

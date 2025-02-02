@@ -97,7 +97,11 @@ let slow = 0;
 // declearnig function
 editsect.addEventListener('click', () => {
   if(localStorage.getItem('season') == null){
-    navigat2()
+    navigat2();
+    editsect.data = 'edit';
+  }else if(editsect.data == 'edit'){
+    navigat13();
+
   }
 })
 
@@ -287,6 +291,37 @@ function navigat11(){
   }, 2000);
 }
 
+function navigat12(){
+  
+  navigate.style.display = 'block';
+  navigate.classList.add('navigate1')
+  navigate.children[0].innerHTML = 'in case you decided to add more courses to an exixting season you created then click the editing button'
+}
+
+function navigat13(){
+  navigate.classList.remove('navigate1')
+  navigate.classList.add('navigate4')
+  profileicon.style.pointerEvents = 'none'
+  homeBtn.style.pointerEvents = 'none';
+  editsect.style.pointerEvents = 'none';
+  editBtn.style.pointerEvents = 'all'
+  navigate.children[0].innerHTML = 'click the existing season you already created'
+}
+function navigat14(){
+  navigate.classList.remove('navigate4')
+  navigate.classList.add('navigate6')
+  navigate.children[0].innerHTML = 'input your courses and submit them, they will appear in the list of courses'
+}
+
+function navigat15(){
+  navigate.classList.remove('navigate6')
+  navigate.style.display = 'none';
+  profileicon.style.pointerEvents = 'all'
+  homeBtn.style.pointerEvents = 'all';
+  editsect.style.pointerEvents = 'all';
+
+}
+
 editee.addEventListener('mousedown', () => {
  
   if(editee.data == undefined){
@@ -325,7 +360,15 @@ profileicon.addEventListener('click', () => {
   if(  navigate.data == 'data'){
     navigate.style.display = 'none';
     navigate.classList.remove('navigate11')
+    navigate.data = undefined;
+    courseInput.data = undefined;
+    setTimeout(() => {
+      navigat12()
+     
+    }, 5000);
   }
+
+ 
 })
 
 function rember(){
@@ -354,13 +397,17 @@ function login(){
 
      body.classList.add('active');
      bodyInner.classList.add('active');
+
+     if(localStorage.getItem('season') == null){
+      navigat()
+    }
      
     }else if(!(nameInput.value == score1[0])){
       namelabel.innerHTML = 'incorrect Name';
       namelabel.style.color = 'red';
 
       setTimeout(() => {
-        namelabel.innerHTML = 'Full Name';
+        namelabel.innerHTML = 'User Name';
       namelabel.style.color = 'black';
       }, 2000);
     }else if(!(passwordInput.value == score3[0])){
@@ -373,9 +420,7 @@ function login(){
       }, 2000);
     }
 
-    if(localStorage.getItem('season') == null){
-      navigat()
-    }
+   
 }
 
 
@@ -514,11 +559,6 @@ nameInput.value = '';
     profileImg.style.backgroundSize = 'cover';
     profileImg.style.backgroundPosition = 'center';
     homeImg.src = scor4;
-      
-    // showInf.classList.add('activea')
-    // homePage.style.pointerEvents = 'none';
-    // nav.style.pointerEvents = 'none'
-    // footer.style.pointerEvents = 'none';
     
    let season;
    if(localStorage.getItem('season') == null){
@@ -609,14 +649,14 @@ if(innerGrade.children.length < 1){
   innerGrade.style.display = 'none';
 }
 
-
-
   }
 
 }
 
 
 function updateGrade(){
+
+  
 if(!(localStorage.getItem('season') == null || localStorage.getItem('season') == '[]')){
   let set1 = JSON.parse(localStorage.getItem('season'))
 
@@ -635,6 +675,7 @@ set1.forEach(each => {
 })
 
 function nexte(next,each,spa){
+  console.log(spa)
   let slow = 0;
   let point = 0;
 
@@ -732,7 +773,6 @@ let total =slow/point;
       spa.style.color = 'red'
       spa.innerHTML = gp;
 
-
   }else if(maths < 30){
     spa.style.color = 'rgb(221, 221, 69)'
     spa.innerHTML = gp;
@@ -744,6 +784,7 @@ let total =slow/point;
 }
 }
 }
+range()
 }
 
 
@@ -877,7 +918,6 @@ editBtn.addEventListener('click', () => {
       gradeEmpty.style.display = 'none';
       innerGrade.style.display = 'block';
     newSeason();
-    console.log('home')
     
     
     }else{
@@ -969,6 +1009,11 @@ function updateData(e){
        for(let i =0; i < editBox.children.length ; i++){
 
           if(!(editBox.children[i].children[0].value == '') || !(editBox.children[i].children[1].value == '') || !(editBox.children[i].children[2].value == '')){
+       
+            if(editsect.data == 'edit'){
+              navigat15()
+              editsect.data = undefined;
+            }
         let div = document.createElement('div')
         div.classList.add('result')
     
@@ -1003,6 +1048,10 @@ function updateData(e){
       let score = editBox.children[i].children[2].value;
       storage(count,index,score,e)
     
+      if(editsect.data == 'edit'){
+        navigat15();
+        editsect.data = '';
+      }
       editBox.children[i].children[0].value = '';
        editBox.children[i].children[1].value = '';
       editBox.children[i].children[2].value = '';
@@ -1334,13 +1383,14 @@ let score7 = JSON.parse(localStorage.getItem(score4[2]));
        
          }
     }
-    tag.parentElement.remove()
+    tag.parentElement.remove();
+    range();
 
 }
 
 function range(){
 
-  if(innerGrade.style.display == 'none' || innerGrade.children.length ==1 ){
+  if(innerGrade.style.display == 'none' || innerGrade.children.length <1 ){
     
   }else{
 
@@ -1350,6 +1400,7 @@ function range(){
   const D = 2;
   const E = 1;
   const F = 0;
+  console.log(GP)
 
   if(!(localStorage.getItem('season') == null || localStorage.getItem('season') == "[]")){
     
@@ -1416,7 +1467,7 @@ function range(){
    
   }
 
- 
+
   let count = score + down;
   outlet1 += (score / count) * 100;
   outlet2 += (down / count) * 100;
@@ -1444,7 +1495,6 @@ function range(){
   if(maths < 15){
       GP.style.color = 'red'
       GP.innerHTML = gp;
-
   }else if(maths < 25){
       GP.style.color = 'yellow'
       GP.innerHTML = gp;
@@ -1508,7 +1558,7 @@ function innerG(e){
    if(tag.classList == 'h2'){
 
     tag.parentElement.classList.toggle('height');
-    if(courseInput.data = 'pet'){
+    if(courseInput.data == 'pet'){
     navigat11()
     }
     
@@ -1524,7 +1574,7 @@ function innerG(e){
        
        innerGrade.style.pointerEvents = 'none';
      cros.classList.add('activea')
-
+      range()
 
     }else if(tag.classList[0] == 'trash'){
       innerTrash(tag);
@@ -1571,7 +1621,7 @@ function newSeason(){
     if(localStorage.getItem('season') == null){
       navigat8();
       }
-      
+
   let div1 = document.createElement('div');
   div1.classList.add('grade1');
 
@@ -1633,6 +1683,7 @@ function newSeason(){
   let slow = 0;
   let point = 0;
   for(let i =0; i < editBox.children.length ; i++){
+
     if(!(editBox.children[i].children[0].value == '') || !(editBox.children[i].children[1].value == '') || !(editBox.children[i].children[2].value == '')){
   
    let div = document.createElement('div')
@@ -1674,7 +1725,6 @@ function newSeason(){
  editBox.children[i].children[2].value = '';
  if(!(p1.innerHTML == '') || !(p2.innerHTML == '')){
   gpe(p1.innerHTML,p2.innerHTML) 
-
  }
 }
 
@@ -1725,17 +1775,20 @@ function newSeason(){
     let maths = Math.floor(total * 10);
    
    let gp = maths.toString()[0]+ '.' + maths.toString()[1];
-  if(maths < 15){
+   if(maths < 15){
       spa.style.color = 'red';
       spa.innerHTML = gp;
-
-
+      
   }else if(maths < 30){
     spa.style.color = 'yellow';
     spa.innerHTML = gp;
+   
+
   }else{
     spa.style.color = 'green';
     spa.innerHTML = gp;
+   
+
 
   }
   let opt = document.createElement('option');
@@ -1746,6 +1799,7 @@ function newSeason(){
 
 
   let store5;
+  console.log(editee.value)
 
    if(localStorage.getItem(`${editee.value}`) == null){
      store5 = []
@@ -1766,8 +1820,8 @@ function newSeason(){
   season.push(`${editee.value}`)
   localStorage.setItem('season', JSON.stringify(season))
 
- 
 }
+range()
 }
 
 function storeCourse(course,credit,grade,sean){
@@ -1845,6 +1899,7 @@ function warrningClear(){
   }
       })
     innerGrade.children[i].remove()
+    range()
 
    }
   }
@@ -1887,7 +1942,9 @@ if(!(options.data == '')){
      tag.data = tag.value;
       editee.classList.remove('activea')
       cross.classList.remove('activea')
-      
+      if(editsect.data == 'edit'){
+        navigat14()
+      }
      }
     
 });
