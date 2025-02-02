@@ -252,7 +252,7 @@ function navigat8(){
   homeBtn.style.pointerEvents = 'all';
   editBtn.style.pointerEvents = 'none';
   navigate.classList.add('navigate8')
-  navigate.children[0].innerHTML = "Now that you are through editing your courses click home button to go back to home page";
+  navigate.children[0].innerHTML = "Now that you are through editing your courses, click home button to go back to home page";
 }
 function navigat9(){
   navigate.classList.remove('navigate8')
@@ -288,7 +288,7 @@ function navigat11(){
   navigate.classList.add('navigate11')
   navigate.data = 'data'
   navigate.children[0].innerHTML ='you can also check out your profile where you can change your image and see your personal details'
-  }, 2000);
+  }, 3000);
 }
 
 function navigat12(){
@@ -305,7 +305,7 @@ function navigat13(){
   homeBtn.style.pointerEvents = 'none';
   editsect.style.pointerEvents = 'none';
   editBtn.style.pointerEvents = 'all'
-  navigate.children[0].innerHTML = 'click the existing season you already created'
+  navigate.children[0].innerHTML = 'click the existing season you already created,please click again to initialize the season you want'
 }
 function navigat14(){
   navigate.classList.remove('navigate4')
@@ -365,7 +365,7 @@ profileicon.addEventListener('click', () => {
     setTimeout(() => {
       navigat12()
      
-    }, 5000);
+    }, 6000);
   }
 
  
