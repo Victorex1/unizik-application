@@ -74,7 +74,7 @@
 }
 .navigate8{
     border-radius:   18px 18px 0 18px ;
-    bottom: 90px;
+    bottom: 86px;
     right: 95px;
     z-index: 2;
     box-shadow: 5px 5px 10px rgba(0,0,0,0.9);
@@ -302,6 +302,9 @@
     align-items: center;
     flex-direction: column;
     justify-content: center;
+}
+.wrapper .form-box h2{
+    font-size: 20px;
 }
 
 .form-box .form{
@@ -845,7 +848,7 @@ footer .edite, footer .pro{
 }
 
 .grade1.height{
-    height: 330px;
+    height: 300px;
 }
 
 .grade1 .courses h3{
@@ -960,7 +963,7 @@ text-align:right;
 
 }
 table{
-    bottom:45px;
+    bottom:66px;
     margin: 0 auto;
     position: absolute;
     left: 18%;

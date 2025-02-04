@@ -278,7 +278,6 @@ function navigat11(){
   homeBtn.style.pointerEvents = 'all';
   editsect.style.pointerEvents = 'all';
   editee.data = undefined;
-  courseInput.data = undefined;
   options.data = undefined;
   trash.data = undefined;
   add.data = undefined;
@@ -295,6 +294,8 @@ function navigat12(){
   
   navigate.style.display = 'block';
   navigate.classList.add('navigate1')
+signOut.style.pointerEvents = 'none'
+
   navigate.children[0].innerHTML = 'in case you decided to add more courses to an exixting season you created then click the editing button'
 }
 
@@ -304,8 +305,9 @@ function navigat13(){
   profileicon.style.pointerEvents = 'none'
   homeBtn.style.pointerEvents = 'none';
   editsect.style.pointerEvents = 'none';
-  editBtn.style.pointerEvents = 'all'
-  navigate.children[0].innerHTML = 'click the existing season you already created,please click again to initialize the season you want'
+signOut.style.pointerEvents = 'all'
+  editBtn.style.pointerEvents = 'all';
+  navigate.children[0].innerHTML = 'click the existing season you already created,please click the season you chose again to initialize the season you want'
 }
 function navigat14(){
   navigate.classList.remove('navigate4')
@@ -533,6 +535,8 @@ function reload(){
  passwordInput.value = '';
 nameInput.value = '';
 
+
+
     let score = JSON.parse(localStorage.getItem('appName'))
     let score1 = JSON.parse(localStorage.getItem('appDepartment'))
     let score2 = JSON.parse(localStorage.getItem('appRegNo'))
@@ -553,6 +557,8 @@ nameInput.value = '';
     registerOne.classList.add('active')
     formHead.innerHTML  =`Welcome back ${score}`;
     wrapper.style.height = '400px';
+
+   
 
    const scor4 = localStorage.getItem('img')
 
@@ -677,7 +683,6 @@ set1.forEach(each => {
 })
 
 function nexte(next,each,spa){
-  console.log(spa)
   let slow = 0;
   let point = 0;
 
@@ -947,6 +952,7 @@ editee.value = '';
   }else if(options.data){
     
         updateData(options.data)
+  courseInput.data = undefined;
        
   }else{
     let pop = document.createElement('div');
@@ -1153,7 +1159,6 @@ function updateData(e){
         
         let gp = maths.toString()[0]+ '.' + maths.toString()[1];
      let spa = innerGrade.children[a].children[1].children[0].children[0];
-       console.log(spa)
      if(maths < 15){
            spa.style.color = 'red'
            spa.innerHTML = gp;
@@ -1402,7 +1407,6 @@ function range(){
   const D = 2;
   const E = 1;
   const F = 0;
-  console.log(GP)
 
   if(!(localStorage.getItem('season') == null || localStorage.getItem('season') == "[]")){
     
@@ -1527,6 +1531,10 @@ formHead.innerHTML  = 'Register';
 wrapper.style.height = '550px';
 
 
+innerGrade.data = innerGrade.children.length;
+options.data = options.children.length
+
+
 localStorage.removeItem('appName')
 localStorage.removeItem('appPassword')
 localStorage.removeItem('appDepartment')
@@ -1550,7 +1558,23 @@ localStorage.removeItem(cleaa[2])
 localStorage.removeItem(each)
 
 })
-localStorage.removeItem('season')
+let sea = JSON.parse(localStorage.getItem('season'));
+sea.splice(0,1)
+localStorage.setItem('season', JSON.stringify(sea))
+
+for(let i = 0; i<innerGrade.data; i++){
+  innerGrade.children[i].remove();
+}
+for(let a = options.data; a > 2;a--){
+  let b = a -1;
+  options.children[b].remove()
+}
+GP.innerHTML = '';
+if(innerGrade.children.length < 1){
+  gradeEmpty.style.display = 'flex';
+  innerGrade.style.display = 'none';
+}
+
 }
 
 // targeting and doing something with it
@@ -1801,7 +1825,6 @@ function newSeason(){
 
 
   let store5;
-  console.log(editee.value)
 
    if(localStorage.getItem(`${editee.value}`) == null){
      store5 = []
