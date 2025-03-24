@@ -383,7 +383,7 @@
 /* body */
 .body{
     display: none;
-    height: 100%;
+    height: 100vh;
 }
 
 .body-inner{
@@ -400,6 +400,7 @@ body{
     transition: all 0.6s ease;
 }
 nav{
+    
   padding: 6px;
   background-color: var(--gree);
   border-bottom-right-radius: 5px;
@@ -436,7 +437,8 @@ nav .logo-img{
 
      position: absolute;
      top: 40%;
-     left: 15%;
+     left: 30%;
+     right: 30%;
      text-align: center;
      text-wrap: wrap;
      width: 250px;
@@ -485,6 +487,7 @@ nav{
     display: none;
     transition: all 0.5s ease;
     position: relative;
+    align-items: center;
 
     
 }
@@ -525,6 +528,7 @@ width: 25px;
 
 .home-img .text{
     line-height: 30px;
+    width: 60%;
 }
 
 .home-img .text h4{
@@ -560,6 +564,46 @@ width: 25px;
     align-items: center;
     justify-content: space-around;
 }
+.home-page .school{
+    position: absolute;
+    z-index: 3;
+    width: 100px;
+    height: 100px;
+    top: 200px;
+    left: 300px;
+    animation:idea 15s ease-in-out 0.5s infinite;
+}
+
+
+@keyframes idea {
+    0%{
+        transform: rotateZ(0deg) translateX(0);
+    }
+    17%{
+        transform: rotateZ(0deg) translateX(0);
+
+    }
+    20%{
+        transform: rotateZ(-50deg) translateX(-50px);
+
+    }
+    24%{
+        transform: rotateZ(-10deg) translateX(-50px);
+
+    }
+    28%{
+        transform: rotateZ(-20deg) translateX(-50px);
+
+    }
+    30%{
+        transform: rotateZ(0deg) translateX(0px);
+
+    }
+    100%{
+        transform: rotateZ(0deg) translateX(0px);
+
+    }
+}
 
 .pro-img .img{
     height: 70px;
@@ -579,19 +623,21 @@ width: 25px;
     width: 90%;
     max-width: 400px;
     border: 3px solid var(--gree);
-    height: 200px;
     padding: 8px ;
     margin: 15px auto;
     border-radius: 8px;
+    
+}
+.inner-selection{
+    align-self: center;
     display: grid;
-    grid-template-columns: repeat(3,90px);
+    grid-template-columns: repeat(3,1fr);
     gap: 10px;
-
 }
 
 .selection .course{
-   width: 80px;
-   height: 80px;
+   width: 70px;
+   height: 70px;
    background-color: rgba(2, 195, 2, 0.648);
    border-radius: 7px;
    padding: 15px;
@@ -608,9 +654,14 @@ width: 25px;
   line-height: 12px;
   font-size: 13px;
 }
+.performance{
+    width: 100%;
+    margin: 5px auto;
+    max-width: 600px;
+}
 .performance h2{
-    margin-left: 35%;
-    margin-top: 20px;
+    display: inline;
+    margin: 5px 40%;
     font-size: 20px;
 }
 
@@ -620,7 +671,7 @@ width: 25px;
     margin: 7px 0;
 }
 .range{
-    width: 80%;
+    width: 90%;
     background-color: white;
     height: 20px;
     border: 4px solid black;
@@ -653,7 +704,48 @@ width: 25px;
     border-left: 2px solid black;
     width: 50%;
 }
+.caresel{
+    width: 300px;
+    height: 95px;
+    margin: 0 auto;
+    border-radius: 10px;
+    border: 3px solid ;
+    position: relative;
+    overflow: hidden;
+}
 
+.img-display{
+    width: 300px;
+    height: 95px;
+}
+.images{
+    position: absolute;
+    display: flex;
+    width: 600px;
+    left: 0;
+    animation: scroll 9s ease-in-out 1s infinite;
+}
+
+@keyframes scroll {
+   0%{
+    left: 0;
+   }   
+   30%{
+    left:0;
+   }
+   35%{
+    left: -300px;
+   }
+   80%{
+    left:-300px;
+   }
+   85%{
+    left: 0;
+   }
+   100%{
+    left: 0;
+   }
+}
 /* footer section */
 
 .pick{
@@ -714,9 +806,8 @@ footer .edite, footer .pro{
     transition: all 0.5 ease;
 }
 
-.profile h3{
-    position: absolute;
-    left: 25%;
+.profile .gpa h3{
+   margin: 10px 25%;
     font-size: 23px;
 }
 
@@ -852,7 +943,6 @@ footer .edite, footer .pro{
 }
 
 .grade1 .courses h3{
-    font-size: 20px;
     margin: 5px 26%;
 }
 
@@ -869,7 +959,7 @@ footer .edite, footer .pro{
 .courses{
     overflow-y: auto;
     padding: 0 10px;
-    height: 91%;
+    height: 87%;
 
 }
 
@@ -1157,4 +1247,207 @@ table td{
     font-size: 24px;
     width: 27px;
     margin: 0 4px;
+}
+
+@media (min-width:390px) {
+    .home-page .school{
+        top: 200px;
+        left: 320px;
+    }
+}
+@media (min-width:700px) {
+    .head h2{
+        font-size: 30px;
+    }
+    .head #options{
+        width: 130px;
+        height: 30px;
+        margin: 10px 0;
+        font-size: 16px;
+    }
+    .edit-btn{
+        width: 40%;
+        left: 30%;
+    }
+    .edita .input input{
+        padding: 20px;
+        font-size: 19px;
+        height: 50px;
+    }
+    .edita .input .course-input {
+      width: 220px;
+    }
+    .edita .input .credit-input {
+        width: 100px;
+    }
+    .edita .input .grade-input {
+        width: 100px;
+    }
+    .era-del button{
+     width: 35px;
+     font-size: 30px;
+    }
+}
+@media (min-width:760px) {
+    .profile-info{
+        display: flex;
+        width: 600px;
+        margin: 10px auto;
+    }
+    .pro-img{
+        width: 200px;
+        height: 200px;
+    }
+    .profile .gpa h3{
+        margin: 20px 35%;
+        font-size: 30px;
+    }
+    .home-page .school{
+        top: 250px;
+        left: 700px;
+        width: 150px;
+        height: 150px;
+    }
+    nav .logo-img{
+        width: 60px;
+    }
+    .notification{
+        width: 50px;
+        height: 50px;
+    }
+    .home-img{
+        max-width: 500px;
+        height: 190px;
+    }
+    .home-img .img{
+        width: 130px;
+        height: 130px;
+        border-radius: 50%;
+    }
+    .home-img .text h4{
+        font-size: 30px;
+    }
+    .home-img .text h5{
+        font-size: 24px;
+    }
+    .home-img .text p{
+        font-size: 20px;
+    }
+    .home-img .text{
+        line-height: 40px;
+    }
+    .selection{
+        max-width: 500px;
+    }
+    .selection .course{
+        width: 120px;
+        height: 120px;
+    }
+    .selection .course p{
+    
+        font-size: 20px;
+        line-height: 22px;
+    }
+ 
+    .inner-selection{
+        grid-template-columns: repeat(3,1fr);
+    }
+    .performance h2{
+        font-size: 30px;
+    }
+    .content .textR h4{
+        font-size: large;
+    }
+.caresel{
+  width: 500px;
+  height: 200px;
+
+}
+
+.img-display{
+    width: 700px;
+    height: 200px;
+}
+.images{
+    width: 1000px;
+    animation: slide 9s ease-in-out infinite;
+}
+@keyframes slide {
+    0%{
+        left: 0;
+       }   
+       30%{
+        left:0;
+       }
+       35%{
+        left: -500px;
+       }
+       80%{
+        left:-500px;
+       }
+       85%{
+        left: 0;
+       }
+       100%{
+        left: 0;
+       }
+}
+footer{
+    height: 70px;
+}
+footer .edite, footer .pro{
+    width: 50px;
+    height: 50px;
+}
+footer .edite .pick, footer .pro .pick{
+    width: 30px;
+}
+footer .img1{
+    width: 85px;
+    height: 85px;
+}
+footer .img1 .pick{
+    width: 60px;
+}
+.pro-text h2{
+    font-size: 28px;
+    margin: 10px 0;
+}
+.pro-text{
+    max-width: 350px;
+}
+.profile-info{
+    align-items: center;
+}
+.about-app{
+    font-size: 3rem;
+height: 900px;
+}
+.grade1 .h2{
+    font-size: 20px;
+    margin: 5px;
+}
+.grade1 .h2 .grade-trash{
+    width: 28px;
+}
+.grade1 .courses{
+    align-items: center;
+}
+.grade1 .courses h3{
+    font-size: 25px;
+}
+.courses header{
+    font-size: 17px;
+}
+.courses .result{
+    font-size: 16px;
+}table td{
+padding: 7px 5px;
+border: 1px solid;
+font-size: 16px;
+}
+table{
+    bottom: 83px;
+    left: 30%;
+}
 }

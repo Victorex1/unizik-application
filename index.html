@@ -124,6 +124,7 @@
         <p> click the <b>About this App</b> button to know more about the app or just continue with the app</p>
     </div>
 <section class="home-page active">
+    <img class="school" src="img/school.png" alt="">
         <div class="home-img">
             <div class="img">
             <img src="img/profileImg.jpg" style="width: 100%" alt="">
@@ -137,11 +138,12 @@
         </div>
         
     <section class="selection">
+      <div class="inner-selection">
         <div class="course list lis" onclick="gradee()">
             <img src="img/grade.png" alt="">
             <p>list of courses</p>
         </div>
-        <div class="course list" onclick="about()">
+        <div class="course list aboutApp" onclick="about()">
             <p>About this App</p>
         </div>
         <div class="course list">
@@ -152,7 +154,8 @@
             <img src="img/grade.png" alt="">
             <p>New upDate</p>
         </div>
-</section>
+      </div>
+    </section>
 
     <section class="performance">
 
@@ -172,6 +175,12 @@
         </div>
     </section>
 
+    <section class="caresel">
+        <div class="images ">
+                <img src="img/advice2.png" class="img-display"  alt="">
+                <img src="img/advice1.png" class="img-display" alt="">
+        </div>
+    </section>
     </section>
 
 <section class="about-app ">
@@ -208,11 +217,10 @@
 
     <!-- profile page -->
 <section class="profile ">
+    <div class="profile-info">
     <div class="pro-img">
         <div class="edit">
-       <input type="file" class="file"  accept="image/jpg, image/jpeg, image/png" hidden>
-            
-        </div>
+       <input type="file" class="file"  accept="image/jpg, image/jpeg, image/png" hidden>  </div>
     </div>
 
     <div class="pro-text">
@@ -228,8 +236,11 @@
 
         
        </div>
+     </div>
     </div >
-    <h3>your CGPA is <span></span></h3>
+    <div class="gpa">
+        <h3>your CGPA is <span></span></h3>
+    </div>
 </section>
 
 <!-- grades -->

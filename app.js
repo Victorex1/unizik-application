@@ -82,18 +82,22 @@ const indicate = document.querySelector('.indicate');
 const profileicon = document.querySelector('.pro');
 const editsect = document.querySelector('.edite');
 const homeBtn = document.querySelector('.img1');
+const aboutAppBtn = document.querySelector('.aboutApp');
 const listofCourses = document.querySelector('.selection .lis');
 
 
 // sign in page
-let recorded = 0;
 let cours = 'course';
 let grad = 'grade';
 let credite = 'credit';
 let slow = 0;
   let point = 0;
 
-
+  const content = document.querySelector(".images");
+  const box = document.querySelector(".caresel");
+  
+  // content.style.animation="scroll 9s ease-in-out 1s infinite";
+  
 // declearnig function
 editsect.addEventListener('click', () => {
   if(localStorage.getItem('season') == null){
@@ -114,7 +118,6 @@ remember.addEventListener('click', rember);
 confirme.addEventListener('click', createPassword);
 innerGrade.addEventListener('click', innerG);
 warrningBtn.addEventListener('click', warrningClear);
-
 function wait(){
 
   setTimeout(() => {
@@ -191,7 +194,8 @@ const navigat = () => {
     nav.style.pointerEvents = 'none';
     navigate.style.display= 'block';
     profileicon.style.pointerEvents = 'none';
-    homeBtn.style.pointerEvents = 'none';
+  aboutAppBtn.style.pointerEvents = 'none',
+  homeBtn.style.pointerEvents = 'none';
     navigate.classList.add('navigate1');
 }
 
@@ -220,7 +224,7 @@ function navigat4(){
   navigate.classList.remove('navigate3')
   navigate.classList.add('navigate4')
   options.style.pointerEvents = 'all';
-
+  editee.parentElement.children[1].style.display ="none";
   navigate.children[0].innerHTML = "here, you need to select <b>New section</b>, if an input box didn't show click it again to show"
 }
 
@@ -268,7 +272,10 @@ function navigat10(){
   homeBtn.style.pointerEvents = 'none';
   navigate.classList.add('navigate10')
   navigate.children[0].innerHTML ='Now you can click this header for you to see your courses and click again to hide them'
+  aboutAppBtn.style.pointerEvents = 'all'
+
 }
+
 
 function navigat11(){
 
@@ -318,10 +325,11 @@ function navigat14(){
 function navigat15(){
   navigate.classList.remove('navigate6')
   navigate.style.display = 'none';
+  nav.style.pointerEvents = 'all'
   profileicon.style.pointerEvents = 'all'
   homeBtn.style.pointerEvents = 'all';
   editsect.style.pointerEvents = 'all';
-
+  editee.parentElement.children[1].style.display ="block";
 }
 
 editee.addEventListener('mousedown', () => {
