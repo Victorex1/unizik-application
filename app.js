@@ -207,6 +207,7 @@ function navigat2(){
   editBtn.style.pointerEvents = 'none';
   trash.style.pointerEvents = 'none';
     editsect.style.pointerEvents = 'none';
+    editsect.style.pointerEvents="none";
   navigate.classList.add('navigate2')
   navigate.children[0].innerHTML = 'Here, when you click the plus button, you can bring more input space to write your courses'
 }
@@ -218,7 +219,6 @@ function navigat3(){
   navigate.classList.add('navigate3')
   navigate.children[0].innerHTML = 'here, you can delet the input space that already exist';
 }
-
 function navigat4(){
   trash.style.pointerEvents = 'none';
   navigate.classList.remove('navigate3')
@@ -283,12 +283,10 @@ function navigat11(){
   navigate.style.display = 'none';
   profileicon.style.pointerEvents = 'all'
   homeBtn.style.pointerEvents = 'all';
-  editsect.style.pointerEvents = 'all';
   editee.data = undefined;
   options.data = undefined;
   trash.data = undefined;
   add.data = undefined;
- 
   setTimeout(() => {
   navigate.style.display = 'block';
   navigate.classList.add('navigate11')
@@ -302,6 +300,7 @@ function navigat12(){
   navigate.style.display = 'block';
   navigate.classList.add('navigate1')
 signOut.style.pointerEvents = 'none'
+editsect.style.pointerEvents="all";
 
   navigate.children[0].innerHTML = 'in case you decided to add more courses to an exixting season you created then click the editing button'
 }
@@ -961,6 +960,7 @@ editee.value = '';
     
         updateData(options.data)
   courseInput.data = undefined;
+  cross.classList.remove('activea')
        
   }else{
     let pop = document.createElement('div');

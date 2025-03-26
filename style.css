@@ -1248,6 +1248,14 @@ table td{
     width: 27px;
     margin: 0 4px;
 }
+@media (min-width:374px) {
+    .editee .cross .crosss{
+        left: 283px;
+    }
+    .home-page .school{
+        left: 319px;
+    }
+}
 
 @media (min-width:390px) {
     .home-page .school{
